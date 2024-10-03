@@ -78,7 +78,10 @@ function radixSort(input_array, num_processors)
   * Input sizes
     - (put here)
   * Input types
-    - (put here)
+    - Sorted
+    - Sorted with 1% not sorted
+    - Reverse sorted
+    - Random
 - Strong scaling (same problem size, increase number of processors/nodes)
   * (put here)
 - Weak scaling (increase problem size, increase number of processors)
