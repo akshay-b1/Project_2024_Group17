@@ -26,4 +26,4 @@ We will communicate via iMessage and Discord
 - Input sizes, Input types
 - Strong scaling (same problem size, increase number of processors/nodes)
 - Weak scaling (increase problem size, increase number of processors)
-- Compare Types: communication strategies (collectives vs. point-to-point) and parallelization strategies (master/worker vs. SPMD)
+- Versions to Compare: communication strategies (collectives vs. point-to-point) and parallelization strategies (master/worker vs. SPMD)
