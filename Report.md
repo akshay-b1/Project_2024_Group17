@@ -15,7 +15,7 @@ We will communicate via iMessage and Discord
 ### 2a. Brief project description (what algorithms will you be comparing and on what architectures)
 
 - Bitonic Sort: Jesung Ha
-- Sample Sort: Aayush Garg
+- Sample Sort (Aayush Garg) : a sorting algorithm that is a divide and conquer algorithm by paritioning the array into sub-intervals or buckets. In parallel, the buckets are then sorted individually across multiple processors and then concatenated together.
 - Merge Sort: Jeffrey Slobodkin
 - Radix Sort (Akshay Belhe) : works by sorting numbers digit by digit, starting from the least significant digit. In parallel Radix Sort, the work of sorting each digit is split across multiple processors.
 
@@ -26,3 +26,4 @@ We will communicate via iMessage and Discord
 - Input sizes, Input types
 - Strong scaling (same problem size, increase number of processors/nodes)
 - Weak scaling (increase problem size, increase number of processors)
+- Compare Types: communication strategies (collectives vs. point-to-point) and parallelization strategies (master/worker vs. SPMD)
