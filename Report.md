@@ -1,6 +1,6 @@
 # CSCE 435 Group project
 
-## 0. Group number: 
+## 0. Group number: 17
 
 ## 1. Group members:
 1. Jeffrey Slobodkin
