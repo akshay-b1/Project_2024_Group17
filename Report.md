@@ -87,7 +87,7 @@ function radixSort(input_array, num_processors)
 - Weak scaling (increase problem size, increase number of processors)
   * Problem Size: 10^3, 10^5, 10^7, 10^9
   * Increase number of processors and problem size
-      * (10^3, 2), (10^5, 4), (10^7, 8), (10^9, 16) 
+      * (1 * 10^7, 2), (2 * 10^7, 4), (4 * 10^7, 8), (8 * 10^7, 16) 
 
  - We will be measuring:
     - Execution Time: For each run, we will record the total execution time taken to sort the array.
