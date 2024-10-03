@@ -16,7 +16,7 @@ We will communicate via iMessage and Discord
 
 - Bitonic Sort: Jesung Ha
 - Sample Sort (Aayush Garg) : a sorting algorithm that is a divide and conquer algorithm by paritioning the array into sub-intervals or buckets. In parallel, the buckets are then sorted individually across multiple processors and then concatenated together.
-- Merge Sort: Jeffrey Slobodkin
+- Merge Sort: Jeffrey Slobodkin: a comparison based sorting algorithm that uses divide and conquer by splitting the array many times until each has only one item. In parallel, they are sorted by merging the sublits across multiple processors into one list.
 - Radix Sort (Akshay Belhe) : works by sorting numbers digit by digit, starting from the least significant digit. In parallel Radix Sort, the work of sorting each digit is split across multiple processors.
 
 ### 2b. Pseudocode for each parallel algorithm
@@ -46,7 +46,20 @@ src: https://en.wikipedia.org/wiki/Samplesort
 ```
 - Merge Sort:
 ```
-(put here)
+function parallelMergesort(A, lo, hi, B, off):
+    len := hi - lo + 1               
+    if len == 1 then
+        B[off] := A[lo]                
+    else:
+        T := new array of length len   
+        mid := floor((lo + hi) / 2)    
+        mid' := mid - lo + 1           
+        fork parallelMergesort(A, lo, mid, T, 1)
+        parallelMergesort(A, mid + 1, hi, T, mid' + 1) 
+        join                             
+        parallelMerge(T, 1, mid', mid' + 1, len, B, off)
+
+https://en.wikipedia.org/wiki/Merge_sort
 ```
 - Radix Sort:
 ```
