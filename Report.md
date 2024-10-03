@@ -36,7 +36,38 @@ We will communicate via iMessage and Discord
 ```
 - Radix Sort:
 ```
-(put here)
+function radixSort(input_array, num_processors)
+    max_value = find_max(input_array)
+
+    for each digit in max_value from ones place to most significant:
+        count_array = initialize_array()
+
+        // divide the input_array among processors
+        local_array = **MPI_Scatter**(input_array, num_processors)
+
+        // perform counting based on current digit
+        local_count = count_digit_occurrences(local_array, digit)
+
+        // gather the local counts from each processor
+        global_count = **MPI_Gather**(local_count, root=0)
+
+        if processor_rank == 0:
+            // Compute prefix sum of counts
+            prefix_sum = compute_prefix_sum(global_count)
+        
+        // send prefix_sum to all processors
+        prefix_sum = **MPI_Bcast**(prefix_sum, root=0)
+
+        sorted_local_array = redistribute_elements(local_array, prefix_sum)
+
+        // gather the sorted local arrays from all processors
+        sorted_array = gather(sorted_local_array, root=0)
+
+        if processor_rank == 0:
+            // Update the input array for the next digit
+            input_array = sorted_array
+
+    return sorted_array
 ```
 
 - MPI Calls:
