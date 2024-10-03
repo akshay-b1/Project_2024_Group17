@@ -17,7 +17,7 @@ We will communicate via iMessage and Discord
 - Bitonic Sort: Jesung Ha
 - Sample Sort: Aayush Garg
 - Merge Sort: Jeffrey Slobodkin
-- Radix Sort (Akshay Belhe) : sorting algorithm that works by sorting numbers digit by digit, starting from the least significant digit. In parallel Radix Sort, the work of sorting each digit is split across multiple processors.
+- Radix Sort (Akshay Belhe) : works by sorting numbers digit by digit, starting from the least significant digit. In parallel Radix Sort, the work of sorting each digit is split across multiple processors.
 
 ### 2b. Pseudocode for each parallel algorithm
 - For MPI programs, include MPI calls you will use to coordinate between processes
