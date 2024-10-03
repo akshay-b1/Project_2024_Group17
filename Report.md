@@ -99,7 +99,7 @@ function radixSort(input_array, num_processors)
   - Number of Processors: 1, 2, 4, 8, 16, 32
  
 - Weak scaling (increase problem size, increase number of processors)
-  * Problem Size: 10^3, 10^5, 10^7, 10^9
+  * Problem Size: 10^7 in different intervals scaled to match rate at which processors are increasing
   * Increase number of processors and problem size
       * (1 * 10^7, 2), (2 * 10^7, 4), (4 * 10^7, 8), (8 * 10^7, 16) 
 
