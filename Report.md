@@ -12,10 +12,10 @@
 
 ### 2a. Brief project description (what algorithms will you be comparing and on what architectures)
 
-- Bitonic Sort:
-- Sample Sort:
-- Merge Sort:
-- Radix Sort:
+- Bitonic Sort: Jesung Ha
+- Sample Sort: Aayush Garg
+- Merge Sort: Jeffrey Slobodkin
+- Radix Sort: Akshay Belhe
 
 ### 2b. Pseudocode for each parallel algorithm
 - For MPI programs, include MPI calls you will use to coordinate between processes
