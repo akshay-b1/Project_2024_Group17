@@ -59,7 +59,7 @@ function parallelMergesort(A, lo, hi, B, off):
         join                             
         parallelMerge(T, 1, mid', mid' + 1, len, B, off)
 
-https://en.wikipedia.org/wiki/Merge_sort
+src: https://en.wikipedia.org/wiki/Merge_sort
 ```
 - Radix Sort:
 ```
