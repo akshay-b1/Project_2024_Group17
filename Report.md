@@ -28,7 +28,21 @@ We will communicate via iMessage and Discord
 ```
 - Sample Sort:
 ```
-(put here)
+function sampleSort(A[1..n], k, p)
+    // if average bucket size is below a threshold switch to e.g. quicksort
+    if n / k < threshold then smallSort(A) 
+    /* Step 1 */
+    select S = [S1, ..., S(p−1)k] randomly from // select samples
+    sort S // sort sample
+    [s0, s1, ..., sp−1, sp] <- [-∞, Sk, S2k, ..., S(p−1)k, ∞] // select splitters
+    /* Step 2 */
+    for each a in A
+        find j such that sj−1 < a <= sj
+        place a in bucket bj
+    /* Step 3 and concatenation */
+    return concatenate(sampleSort(b1), ..., sampleSort(bk))
+
+src: https://en.wikipedia.org/wiki/Samplesort
 ```
 - Merge Sort:
 ```
