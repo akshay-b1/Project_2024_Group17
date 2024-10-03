@@ -81,7 +81,8 @@ function radixSort(input_array, num_processors)
   * Input types
     - Sorted, Sorted with 1% not sorted, Reverse sorted, Random
 - Strong scaling (same problem size, increase number of processors/nodes)
-  * (put here)
+  - Problem Size: 10^7
+  - Number of Processors: 2,4,8,16,32
 - Weak scaling (increase problem size, increase number of processors)
   * (put here)
 - Versions to Compare: communication strategies (collectives vs. point-to-point) and parallelization strategies (master/worker vs. SPMD)
