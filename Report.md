@@ -58,6 +58,7 @@ function radixSort(input_array, num_processors)
         // send prefix_sum to all processors
         prefix_sum = **MPI_Bcast**(prefix_sum, root=0)
 
+        // sort digit based on prefix sum
         sorted_local_array = redistribute_elements(local_array, prefix_sum)
 
         // gather the sorted local arrays from all processors
