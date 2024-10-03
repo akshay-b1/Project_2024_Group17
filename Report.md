@@ -8,6 +8,8 @@
 3. Akshay Belhe
 4. Jesung Ha
 
+We will communicate via iMessage and Discord
+
 ## 2. Project topic (e.g., parallel sorting algorithms)
 
 ### 2a. Brief project description (what algorithms will you be comparing and on what architectures)
