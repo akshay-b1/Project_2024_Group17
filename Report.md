@@ -90,5 +90,13 @@ function radixSort(input_array, num_processors)
     - Efficiency: 
       $$\frac{\text{Speedup}}{\text{Number of processors}}$$
 - Weak scaling (increase problem size, increase number of processors)
-  * (put here)
+  * Problem Size: 10^3, 10^5, 10^7, 10^9
+  * Increase number of processors and problem size
+      * (10^3, 2), (10^5, 4), (10^7, 8), (10^9, 16) 
+  * We will be measuring:
+      * Execution Time: For each run, we will record the total execution time taken to sort the array.
+      * Speedup:
+          * $$\frac{\text{Time with 1 processor}}{\text{Time with N processors}}$$
+      * Efficiency:
+        * $$\frac{\text{Speedup}}{\text{Number of processors}}$$ 
 - Versions to Compare: communication strategies (collectives vs. point-to-point) and parallelization strategies (master/worker vs. SPMD)
