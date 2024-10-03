@@ -77,12 +77,9 @@ function radixSort(input_array, num_processors)
 ### 2c. Evaluation plan - what and how will you measure and compare
 - Input sizes, Input types
   * Input sizes
-    - (put here)
+    - 10^3, 10^5, 10^7, 10^9
   * Input types
-    - Sorted
-    - Sorted with 1% not sorted
-    - Reverse sorted
-    - Random
+    - Sorted, Sorted with 1% not sorted, Reverse sorted, Random
 - Strong scaling (same problem size, increase number of processors/nodes)
   * (put here)
 - Weak scaling (increase problem size, increase number of processors)
