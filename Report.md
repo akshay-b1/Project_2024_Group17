@@ -3,10 +3,10 @@
 ## 0. Group number: 
 
 ## 1. Group members:
-1. First
-2. Second
-3. Third
-4. Fourth
+1. Jeffrey Slobodkin
+2. Aayush Garg
+3. Akshay Belhe
+4. Jesung Ha
 
 ## 2. Project topic (e.g., parallel sorting algorithms)
 
