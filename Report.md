@@ -85,7 +85,9 @@ function parallel_radix_sort(input_array, num_processors)
 ```
 
 - MPI Calls:
-  * (put here)
+  - MPI_Scatter()
+  - MPI_Gather()
+  - MPI_Bcast()
 
 ### 2c. Evaluation plan - what and how will you measure and compare
 - Input sizes, Input types
