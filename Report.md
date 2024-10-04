@@ -63,36 +63,22 @@ src: https://en.wikipedia.org/wiki/Merge_sort
 ```
 - Radix Sort:
 ```
-function radixSort(input_array, num_processors)
+function parallel_radix_sort(input_array, num_processors)
     max_value = find_max(input_array)
+    
+    for digit in each digit of(max_value):
+        local_array = mpi_scatter(input_array, num_processors)
+        local_count = count_digits(local_array, digit)
+        global_count = mpi_gather(local_count, root=0)
 
-    for each digit in max_value from ones place to most significant:
-        count_array = initialize_array()
-
-        // divide the input_array among processors
-        local_array = **MPI_Scatter**(input_array, num_processors)
-
-        // perform counting based on current digit
-        local_count = count_digit_occurrences(local_array, digit)
-
-        // gather the local counts from each processor
-        global_count = **MPI_Gather**(local_count, root=0)
-
-        if processor_rank == 0:
-            // Compute prefix sum of counts
+        if rank == 0:
             prefix_sum = compute_prefix_sum(global_count)
-        
-        // send prefix_sum to all processors
-        prefix_sum = **MPI_Bcast**(prefix_sum, root=0)
 
-        // sort digit based on prefix sum
-        sorted_local_array = redistribute_elements(local_array, prefix_sum)
-
-        // gather the sorted local arrays from all processors
+        prefix_sum = mpi_broadcast(prefix_sum, root=0)
+        sorted_local_array = redistribute(local_array, prefix_sum)
         sorted_array = gather(sorted_local_array, root=0)
 
-        if processor_rank == 0:
-            // Update the input array for the next digit
+        if rank == 0:
             input_array = sorted_array
 
     return sorted_array
