@@ -14,7 +14,7 @@ We will communicate via iMessage and Discord
 
 ### 2a. Brief project description (what algorithms will you be comparing and on what architectures)
 
-- Bitonic Sort: Jesung Ha
+- Bitonic Sort: (Jesung Ha) : Parallel sorting algorithm that splits sequence into a bitonic sequence and perform bitonic merge to sort the sequence. Bitonic sequence is a sequence that monotonically increase and then decrease. 
 - Sample Sort (Aayush Garg) : a sorting algorithm that is a divide and conquer algorithm by paritioning the array into sub-intervals or buckets. In parallel, the buckets are then sorted individually across multiple processors and then concatenated together.
 - Merge Sort: Jeffrey Slobodkin: a comparison based sorting algorithm that uses divide and conquer by splitting the array many times until each has only one item. In parallel, they are sorted by merging the sublits across multiple processors into one list.
 - Radix Sort (Akshay Belhe) : works by sorting numbers digit by digit, starting from the least significant digit. In parallel Radix Sort, the work of sorting each digit is split across multiple processors.
@@ -24,7 +24,41 @@ We will communicate via iMessage and Discord
 
 - Bitonic Sort:
 ```
-(put here)
+function comp_swap(a, i ,j, direction):
+    //swap based on direction
+    if (direction == 1 and a[i]>a[j]) or (direction == 0 and a[j] > a[i]):
+      swap(a[i], a[j])
+
+
+function bitonic_merge(a, low, count, dir):
+    if count > 1:
+      int k = count / 2
+      //compare and swap elements
+      for (i = low, i < low +k, i++){
+        comp_swap(a, i, i+ k , dir)
+      }
+
+      //recursively merge
+      bitonic_merge(arr, low, k, dir)
+      bitonic_merge(arr, low+k, k, dir)
+
+
+function bitonic_sort(a, low, count, dir):
+    if (count > 1):
+        int k = count / 2
+
+        // Sort first half in ascending order (dir = 1)
+        bitonic_sort(a, low, k, 1)
+
+        // Sort second half in descending order (dir = 0)
+        bitonic_sort(a, low + k, k, 0)
+
+        // Merge based on direction
+        bitonic_merge(a, low, count, dir)
+
+
+src = https://www.geeksforgeeks.org/bitonic-sort/#
+
 ```
 - Sample Sort:
 ```
