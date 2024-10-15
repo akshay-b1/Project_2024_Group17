@@ -51,14 +51,7 @@ void parallelMergeSort(std::vector<int>& arr, int input_size, int world_rank, in
 
     CALI_MARK_BEGIN("comm");
     CALI_MARK_BEGIN("comm_large");
-    int result = MPI_Scatter(world_rank == 0 ? arr.data() : nullptr, chunk_size, MPI_INT, local_arr.data(), chunk_size, MPI_INT, 0, MPI_COMM_WORLD);
-    if (result != MPI_SUCCESS) {
-        char error_string[MPI_MAX_ERROR_STRING];
-        int length_of_error_string;
-        MPI_Error_string(result, error_string, &length_of_error_string);
-        std::cerr << "MPI error in Scatter: " << error_string << std::endl;
-        MPI_Abort(MPI_COMM_WORLD, result);
-    }
+    MPI_Scatter(world_rank == 0 ? arr.data() : nullptr, chunk_size, MPI_INT, local_arr.data(), chunk_size, MPI_INT, 0, MPI_COMM_WORLD);
     CALI_MARK_END("comm_large");
     CALI_MARK_END("comm");
 
