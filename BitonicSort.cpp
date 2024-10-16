@@ -5,6 +5,7 @@
 #include <cmath>
 #include <caliper/cali.h>
 #include <adiak.hpp>
+#include <string>
 
 #define MASTER 0
 
@@ -14,6 +15,7 @@ void bitonicCompare(std::vector<int>& arr, int i, int j, bool dir) {
     }
 }
 
+// Bitonic merge function
 void bitonicMerge(std::vector<int>& arr, int low, int cnt, bool dir) {
     if (cnt > 1) {
         int k = cnt / 2;
@@ -25,51 +27,54 @@ void bitonicMerge(std::vector<int>& arr, int low, int cnt, bool dir) {
     }
 }
 
+// Bitonic sort function
 void bitonicSort(std::vector<int>& arr, int low, int cnt, bool dir) {
     if (cnt > 1) {
         int k = cnt / 2;
-        bitonicSort(arr, low, k, true);
-        bitonicSort(arr, low + k, k, false);
-        bitonicMerge(arr, low, cnt, dir);
+        bitonicSort(arr, low, k, true);  // Sort in ascending order
+        bitonicSort(arr, low + k, k, false);  // Sort in descending order
+        bitonicMerge(arr, low, cnt, dir);  // Merge the result
     }
 }
 
+// Parallel bitonic sort with MPI
 void parallelBitonicSort(std::vector<int>& local_arr, int world_rank, int world_size) {
-    CALI_CXX_MARK_FUNCTION;
     int local_size = local_arr.size();
 
     for (int step = 2; step <= world_size * local_size; step *= 2) {
-        for (int substep = step / 2; substep > 0; substep /= 2) {
-            for (int i = 0; i < local_size; i++) {
-                int j = i ^ substep;
-                int proc = j / local_size;
+    for (int substep = step / 2; substep > 0; substep /= 2) {
+        for (int i = 0; i < local_size; i++) {
+            int j = i ^ substep;
+            int proc = j / local_size;
 
-                if (proc == world_rank) {
-                    bitonicCompare(local_arr, i % local_size, j % local_size, (i / step) % 2 == 0);
+            if (proc == world_rank) {
+                // Bitonic compare within the process
+                bitonicCompare(local_arr, i % local_size, j % local_size, (i / step) % 2 == 0);
+            } else {
+                // Communication between processes
+                int partner_rank = world_rank ^ (substep / local_size);
+                int send_val = local_arr[i];
+                int recv_val;
+
+                MPI_Sendrecv(&send_val, 1, MPI_INT, partner_rank, 0,
+                             &recv_val, 1, MPI_INT, partner_rank, 0,
+                             MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+
+                // Perform the comparison based on the step's direction
+                if ((i / step) % 2 == 0) {
+                    local_arr[i] = std::min(send_val, recv_val);
                 } else {
-                    int partner_rank = world_rank ^ (substep / local_size);
-                    int send_val = local_arr[i];
-                    int recv_val;
-
-                    CALI_MARK_BEGIN("comm");
-                    MPI_Sendrecv(&send_val, 1, MPI_INT, partner_rank, 0,
-                                 &recv_val, 1, MPI_INT, partner_rank, 0,
-                                 MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-                    CALI_MARK_END("comm");
-
-                    if ((i / step) % 2 == 0) {
-                        local_arr[i] = std::min(send_val, recv_val);
-                    } else {
-                        local_arr[i] = std::max(send_val, recv_val);
-                    }
+                    local_arr[i] = std::max(send_val, recv_val);
                 }
             }
         }
     }
 }
 
+}
+
+
 void data_init_runtime(std::vector<int>& arr, int input_size, int input_type) {
-    CALI_CXX_MARK_FUNCTION;
     arr.resize(input_size);
     int num_unsorted = 0;
 
@@ -94,15 +99,13 @@ void data_init_runtime(std::vector<int>& arr, int input_size, int input_type) {
 }
 
 bool correctness_check(const std::vector<int>& arr) {
-    CALI_CXX_MARK_FUNCTION;
     return std::is_sorted(arr.begin(), arr.end());
 }
 
 int main(int argc, char** argv) {
-    CALI_CXX_MARK_FUNCTION;
 
     MPI_Init(&argc, &argv);
-
+    CALI_MARK_BEGIN("main");
     int world_rank, world_size;
     MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
     MPI_Comm_size(MPI_COMM_WORLD, &world_size);
@@ -171,7 +174,10 @@ int main(int argc, char** argv) {
         CALI_MARK_BEGIN("correctness_check");
         bool is_sorted = correctness_check(arr);
         CALI_MARK_END("correctness_check");
-
+        for(int i = 0; i < arr.size(); i++){
+            std::cout << std::to_string(arr[i]);
+        }
+        std::cout << std::endl;
         if (is_sorted) {
             std::cout << "Array is correctly sorted." << std::endl;
         } else {
@@ -193,7 +199,9 @@ int main(int argc, char** argv) {
         std::cout << "Avg time: " << avg_time << " seconds" << std::endl;
         std::cout << "Total time: " << total_time << " seconds" << std::endl;
     }
-
+    CALI_MARK_END("main");
     MPI_Finalize();
+
+
     return 0;
 }
