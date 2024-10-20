@@ -1272,7 +1272,30 @@ perform runs that invoke algorithm2 for Sorted, ReverseSorted, and Random data).
     - Total time
     - Variance time/rank
 
+# Sample Sort - Performance Evaluation
 
+## Data Set Size: 268,435,456
+
+<div style="display: flex;">
+  <img src="/samplesortgraphs/performance_metrics_268435456_comp.png" alt="Performance Metrics 268435456 - comp" style="width: 45%; margin-right: 10px;">
+  <img src="/samplesortgraphs/performance_metrics_268435456_comm.png" alt="Performance Metrics 268435456 - comm" style="width: 45%;">
+</div>
+
+## Data Set Size: 4,194,304
+
+<div style="display: flex;">
+  <img src="/samplesortgraphs/performance_metrics_4194304_comp.png" alt="Performance Metrics 4194304 - comp" style="width: 45%; margin-right: 10px;">
+  <img src="/samplesortgraphs/performance_metrics_4194304_comm.png" alt="Performance Metrics 4194304 - comm" style="width: 45%;">
+</div>
+
+## Data Set Size: 65,536
+
+<div style="display: flex;">
+  <img src="/samplesortgraphs/performance_metrics_65536_comp.png" alt="Performance Metrics 65536 - comp" style="width: 45%; margin-right: 10px;">
+  <img src="/samplesortgraphs/performance_metrics_65536_comm.png" alt="Performance Metrics 65536 - comm" style="width: 45%;">
+</div>
+
+```Above we can see the computation and communication performance for input sizes of 2^16, 2^22, and 2^28 (you can view all the graphs generated in the samplesortgraphs folder). One trend we can analyze amongst all of these is that as we increase the input size, we see an increase in the total time over both computation and communication. We also see an overall decline in the average communication and computation time as we increase the number of processes. It is important to note that on the smallest input size, 2^16, it seems that there is a point when increasing the number of processors does drop the total time significantly, but then it keeps increasing. It can also be seen that as the input size increases, the randomly generated input (as seen on the communication side) takes more time on average comapred to either sorted, reverse sorted, or sorted 1% perturbed. Because we are observing the the min, max, average time per rank, we can see that as the number of processes increases, on average the time for computation per each one is definitely decreasing. The reason we see an increase in the total time is because we are looking at the total time as an overall unit compared to per each rank as I said before. So instead if we observe the average time per rank for both communication and computation we can see that as more processors are introduced, more overhead is introduced in terms of communication, which explains the increase in average time/rank for that, but in terms of computation, the average time per processor is definitely decreasing.```
 ## 5. Presentation
 Plots for the presentation should be as follows:
 - For each implementation:
