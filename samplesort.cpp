@@ -27,13 +27,15 @@ int main (int argc, char *argv[])
     CALI_CXX_MARK_FUNCTION;
         
     int sizeOfArray;
-    if (argc == 2)
+    int inputType;    
+    if (argc == 3)
     {
         sizeOfArray = atoi(argv[1]);
+        inputType = atoi(argv[2]);        
     }
     else
     {
-        printf("\n Please provide the size of the array");
+        printf("\n Please provide the size of the array and input type (0-3)");
         return 0;
     }
 
@@ -62,11 +64,27 @@ int main (int argc, char *argv[])
     adiak::value("data_type", "int");
     adiak::value("size_of_data_type", sizeof(int));
     adiak::value("input_size", sizeOfArray);
-    adiak::value("input_type", "Random");
     adiak::value("num_procs", numtasks);
     adiak::value("scalability", "strong");
     adiak::value("implementation_source", "handwritten");
-
+    
+    switch(inputType) {
+        case 0:
+            adiak::value("input_type", "Random");
+            break;
+        case 1:
+            adiak::value("input_type", "Sorted");
+            break;
+        case 2:
+            adiak::value("input_type", "Reverse Sorted");
+            break;
+        case 3:
+            adiak::value("input_type", "Sorted with 1% perturbed");
+            break;
+        default:
+            adiak::value("input_type", "Unknown");
+    }        
+        
     CALI_MARK_BEGIN("main");
     int localSize = sizeOfArray / numtasks;
     int remainder = sizeOfArray % numtasks;
@@ -88,8 +106,32 @@ int main (int argc, char *argv[])
     CALI_MARK_BEGIN("data_init_runtime");
     if (taskid == MASTER) {
         globalArray = (int*)malloc(sizeOfArray * sizeof(int));
-        for (int i = 0; i < sizeOfArray; i++) {
-            globalArray[i] = rand() % sizeOfArray;
+        switch(inputType) {
+            case 0: // Random
+                for (int i = 0; i < sizeOfArray; i++) {
+                    globalArray[i] = rand() % sizeOfArray;
+                }
+                break;
+            case 1: // Sorted
+                for (int i = 0; i < sizeOfArray; i++) {
+                    globalArray[i] = i;
+                }
+                break;
+            case 2: // Reverse Sorted
+                for (int i = 0; i < sizeOfArray; i++) {
+                    globalArray[i] = sizeOfArray - i - 1;
+                }
+                break;
+            case 3: // Sorted with 1% perturbed
+                for (int i = 0; i < sizeOfArray; i++) {
+                    globalArray[i] = i;
+                }
+                int perturbCount = sizeOfArray / 100;
+                for (int i = 0; i < perturbCount; i++) {
+                    int idx = rand() % sizeOfArray;
+                    globalArray[idx] = rand() % sizeOfArray;
+                }
+                break;
         }
         printArray("Initial global array", globalArray, sizeOfArray, MASTER);
     }
