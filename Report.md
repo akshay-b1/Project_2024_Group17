@@ -1296,6 +1296,32 @@ perform runs that invoke algorithm2 for Sorted, ReverseSorted, and Random data).
 </div>
 
 ```Above we can see the computation and communication performance for input sizes of 2^16, 2^22, and 2^28 (you can view all the graphs generated in the samplesortgraphs folder). One trend we can analyze amongst all of these is that as we increase the input size, we see an increase in the total time over both computation and communication. We also see an overall decline in the average communication and computation time as we increase the number of processes. It is important to note that on the smallest input size, 2^16, it seems that there is a point when increasing the number of processors does drop the total time significantly, but then it keeps increasing. It can also be seen that as the input size increases, the randomly generated input (as seen on the communication side) takes more time on average comapred to either sorted, reverse sorted, or sorted 1% perturbed. Because we are observing the the min, max, average time per rank, we can see that as the number of processes increases, on average the time for computation per each one is definitely decreasing. The reason we see an increase in the total time is because we are looking at the total time as an overall unit compared to per each rank as I said before. So instead if we observe the average time per rank for both communication and computation we can see that as more processors are introduced, more overhead is introduced in terms of communication, which explains the increase in average time/rank for that, but in terms of computation, the average time per processor is definitely decreasing.```
+
+# Radix Sort - Performance Evaluation
+
+## Data Set Size: 268,435,456
+
+<div style="display: flex;">
+  <img src="/radix_sort/radixsort_performance_eval_graphs/performance_metrics_268435456_comp_large.png" alt="Performance Metrics 268435456 - comp_large" style="width: 45%; margin-right: 10px;">
+  <img src="/radix_sort/radixsort_performance_eval_graphs/performance_metrics_268435456_comm.png" alt="Performance Metrics 268435456 - comm" style="width: 45%;">
+</div>
+
+## Data Set Size: 4,194,304
+
+<div style="display: flex;">
+  <img src="/radix_sort/radixsort_performance_eval_graphs/performance_metrics_4194304_comp_large.png" alt="Performance Metrics 4194304 - comp_large" style="width: 45%; margin-right: 10px;">
+  <img src="/radix_sort/radixsort_performance_eval_graphs/performance_metrics_4194304_comm.png" alt="Performance Metrics 4194304 - comm" style="width: 45%;">
+</div>
+
+## Data Set Size: 65,536
+
+<div style="display: flex;">
+  <img src="/radix_sort/radixsort_performance_eval_graphs/performance_metrics_65536_comp_large.png" alt="Performance Metrics 65536 - comp_large" style="width: 45%; margin-right: 10px;">
+  <img src="/radix_sort/radixsort_performance_eval_graphs/performance_metrics_65536_comm.png" alt="Performance Metrics 65536 - comm" style="width: 45%;">
+</div>
+
+```The generated plots provide insights into the performance metrics of different computational tasks across input sizes of 2^16, 2^22, and 2^28 and various input types (you can view all the graphs generated in the radixsort_performance_eval_graphs folder). For each input size, we observe how different input types (Random, Sorted, Reverse Sorted, and Sorted with 1% perturbed) affect key metrics such as Min time/rank, Max time/rank, Avg time/rank, Total time, and Variance time/rank. In general, as the number of processes increases, the average time per rank decreases, this shows a strong scalability for larger workloads. The total execution time also shows a reduction with increasing numbers of processes, this shows that parallelization is effective. But there are variations between input types. For example, the Sorted input tends to perform better in terms of consistency, as indicated by lower variance, while the Random and Reverse Sorted inputs often show higher fluctuations in time metrics. The plots also highlight the diminishing returns in performance gains beyond a certain number of processes, especially for smaller input sizes.```
+
 ## 5. Presentation
 Plots for the presentation should be as follows:
 - For each implementation:
