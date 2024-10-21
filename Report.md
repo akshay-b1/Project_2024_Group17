@@ -824,80 +824,161 @@ int main (int argc, char *argv[])
 #include <iostream>
 #include <random>
 #include <cstdlib>
+#include <chrono>
 #include <caliper/cali.h>
+#include <caliper/cali-manager.h>
 #include <adiak.hpp>
+#include <sstream>
 
-void merge(const std::vector<int>& left, const std::vector<int>& right, std::vector<int>& result) {
-    CALI_CXX_MARK_FUNCTION;
-    result.clear();
-    result.reserve(left.size() + right.size());
+void merge(std::vector<int>& arr, long long left, long long mid, long long right) {
+    std::vector<int> temp(right - left + 1);
+    int i = left, j = mid + 1, k = 0;
 
-    auto it_left = left.begin();
-    auto it_right = right.begin();
-
-    while (it_left != left.end() && it_right != right.end()) {
-        if (*it_left <= *it_right) {
-            result.push_back(*it_left++);
+    while (i <= mid && j <= right) {
+        if (arr[i] <= arr[j]) {
+            temp[k++] = arr[i++];
         } else {
-            result.push_back(*it_right++);
+            temp[k++] = arr[j++];
         }
     }
 
-    result.insert(result.end(), it_left, left.end());
-    result.insert(result.end(), it_right, right.end());
-}
+    while (i <= mid) {
+        temp[k++] = arr[i++];
+    }
 
-void mergeSort(std::vector<int>& arr, int left, int right) {
-    CALI_CXX_MARK_FUNCTION;
-    if (left < right) {
-        int mid = left + (right - left) / 2;
-        std::vector<int> left_half(arr.begin() + left, arr.begin() + mid + 1);
-        std::vector<int> right_half(arr.begin() + mid + 1, arr.begin() + right + 1);
-        
-        mergeSort(left_half, 0, left_half.size() - 1);
-        mergeSort(right_half, 0, right_half.size() - 1);
-        
-        std::vector<int> result(right - left + 1);
-        merge(left_half, right_half, result);
-        
-        std::copy(result.begin(), result.end(), arr.begin() + left);
+    while (j <= right) {
+        temp[k++] = arr[j++];
+    }
+
+    for (int p = 0; p < k; p++) {
+        arr[left + p] = temp[p];
     }
 }
 
-void parallelMergeSort(std::vector<int>& arr, int input_size, int world_rank, int world_size) {
-    CALI_CXX_MARK_FUNCTION;
-    int chunk_size = input_size / world_size;
-    std::vector<int> local_arr(chunk_size);
+void mergeSort(std::vector<int>& arr, long long left, long long right) {
+    if (left < right) {
+        int mid = left + (right - left) / 2;
+        mergeSort(arr, left, mid);
+        mergeSort(arr, mid + 1, right);
+        merge(arr, left, mid, right);
+    }
+}
 
+void data_init_runtime(std::vector<int>& arr, long long input_size, const std::string& input_type) {
+    CALI_MARK_BEGIN("data_init_runtime");
+    arr.resize(input_size);
+    if (input_type == "Sorted") {
+        std::iota(arr.begin(), arr.end(), 0);
+    } else if (input_type == "ReverseSorted") {
+        std::iota(arr.rbegin(), arr.rend(), 0);
+    } else if (input_type == "Random") {
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_int_distribution<> dis(0, input_size - 1);
+        for (int& num : arr) {
+            num = dis(gen);
+        }
+    } else if (input_type == "1_perc_perturbed") {
+        std::iota(arr.begin(), arr.end(), 0);
+        int num_perturbed = input_size / 100;
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_int_distribution<> dis(0, input_size - 1);
+        for (int i = 0; i < num_perturbed; ++i) {
+            int idx1 = dis(gen);
+            int idx2 = dis(gen);
+            std::swap(arr[idx1], arr[idx2]);
+        }
+    }
+    CALI_MARK_END("data_init_runtime");
+}
+
+void parallelMergeSort(std::vector<int>& arr, int world_rank, int world_size) {    
+    size_t total_size = (world_rank == 0) ? arr.size() : 0;
+    MPI_Bcast(&total_size, 1, MPI_UNSIGNED_LONG_LONG, 0, MPI_COMM_WORLD);
+    
+    size_t base_chunk_size = total_size / world_size;
+    size_t remainder = total_size % world_size;
+    
+    std::vector<int> sendcounts(world_size);
+    std::vector<int> displs(world_size);
+    
+    size_t offset = 0;
+    for (int i = 0; i < world_size; ++i) {
+        sendcounts[i] = static_cast<int>(base_chunk_size + (i < remainder ? 1 : 0));
+        displs[i] = static_cast<int>(offset);
+        offset += sendcounts[i];
+    }
+    
+    // Broadcast sendcounts to all processes
+    MPI_Bcast(sendcounts.data(), world_size, MPI_INT, 0, MPI_COMM_WORLD);
+    
+    size_t local_size = sendcounts[world_rank];
+    std::vector<int> local_arr(local_size);
+    
+    
     CALI_MARK_BEGIN("comm");
     CALI_MARK_BEGIN("comm_large");
-    MPI_Scatter(world_rank == 0 ? arr.data() : nullptr, chunk_size, MPI_INT, local_arr.data(), chunk_size, MPI_INT, 0, MPI_COMM_WORLD);
+    
+    int result = MPI_Scatterv(world_rank == 0 ? arr.data() : nullptr, sendcounts.data(), displs.data(), MPI_INT,
+                              local_arr.data(), local_size, MPI_INT, 0, MPI_COMM_WORLD);
+    if (result != MPI_SUCCESS) {
+        char error_string[MPI_MAX_ERROR_STRING];
+        int length_of_error_string;
+        MPI_Error_string(result, error_string, &length_of_error_string);
+        MPI_Abort(MPI_COMM_WORLD, result);
+    }
+    
     CALI_MARK_END("comm_large");
     CALI_MARK_END("comm");
 
     CALI_MARK_BEGIN("comp");
     CALI_MARK_BEGIN("comp_large");
-    mergeSort(local_arr, 0, chunk_size - 1);
+    
+    mergeSort(local_arr, 0, local_size - 1);
+    
     CALI_MARK_END("comp_large");
     CALI_MARK_END("comp");
+
+    std::vector<int> all_sizes(world_size);
+    MPI_Allgather(&local_size, 1, MPI_INT, all_sizes.data(), 1, MPI_INT, MPI_COMM_WORLD);
 
     for (int step = 1; step < world_size; step *= 2) {
         if (world_rank % (2 * step) == 0) {
             if (world_rank + step < world_size) {
-                std::vector<int> received_arr(chunk_size * step);
-                
                 CALI_MARK_BEGIN("comm");
                 CALI_MARK_BEGIN("comm_large");
-                MPI_Recv(received_arr.data(), chunk_size * step, MPI_INT, world_rank + step, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+                
+                int partner_size = all_sizes[world_rank + step];
+                std::vector<int> received_arr(partner_size);
+                
+                MPI_Status status;
+                MPI_Probe(world_rank + step, 0, MPI_COMM_WORLD, &status);
+                
+                int actual_size;
+                MPI_Get_count(&status, MPI_INT, &actual_size);
+
+                received_arr.resize(actual_size);
+                
+                result = MPI_Recv(received_arr.data(), actual_size, MPI_INT, world_rank + step, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+                if (result != MPI_SUCCESS) {
+                    char error_string[MPI_MAX_ERROR_STRING];
+                    int length_of_error_string;
+                    MPI_Error_string(result, error_string, &length_of_error_string);
+                    log_message("MPI_Recv error: " + std::string(error_string), world_rank, __func__);
+                    MPI_Abort(MPI_COMM_WORLD, result);
+                }
+
                 CALI_MARK_END("comm_large");
                 CALI_MARK_END("comm");
 
-                std::vector<int> merged_arr(chunk_size * 2 * step);
-                
                 CALI_MARK_BEGIN("comp");
                 CALI_MARK_BEGIN("comp_large");
-                merge(local_arr, received_arr, merged_arr);
-                local_arr = merged_arr;
+                
+                std::vector<int> merged_arr(local_arr.size() + received_arr.size());
+                std::merge(local_arr.begin(), local_arr.end(), received_arr.begin(), received_arr.end(), merged_arr.begin());
+                local_arr = std::move(merged_arr);
+                
                 CALI_MARK_END("comp_large");
                 CALI_MARK_END("comp");
             }
@@ -906,7 +987,16 @@ void parallelMergeSort(std::vector<int>& arr, int input_size, int world_rank, in
             if (target >= 0) {
                 CALI_MARK_BEGIN("comm");
                 CALI_MARK_BEGIN("comm_large");
-                MPI_Send(local_arr.data(), chunk_size * step, MPI_INT, target, 0, MPI_COMM_WORLD);
+                
+                result = MPI_Send(local_arr.data(), local_arr.size(), MPI_INT, target, 0, MPI_COMM_WORLD);
+                if (result != MPI_SUCCESS) {
+                    char error_string[MPI_MAX_ERROR_STRING];
+                    int length_of_error_string;
+                    MPI_Error_string(result, error_string, &length_of_error_string);
+                    log_message("MPI_Send error: " + std::string(error_string), world_rank, __func__);
+                    MPI_Abort(MPI_COMM_WORLD, result);
+                }
+                
                 CALI_MARK_END("comm_large");
                 CALI_MARK_END("comm");
                 break;
@@ -915,74 +1005,39 @@ void parallelMergeSort(std::vector<int>& arr, int input_size, int world_rank, in
     }
 
     if (world_rank == 0) {
-        arr.resize(input_size);
-    }
-    MPI_Gather(local_arr.data(), chunk_size, MPI_INT, arr.data(), chunk_size, MPI_INT, 0, MPI_COMM_WORLD);
-}
-
-void data_init_runtime(std::vector<int>& arr, int input_size, const std::string& input_type) {
-    CALI_CXX_MARK_FUNCTION;
-    arr.resize(input_size);
-    int num_unsorted = 0;
-    if (input_type == "Sorted") {
-    
-        for (int i = 0; i < input_size; i++) {
-            arr[i] = i;
-        }
-        
-    } else if (input_type == "ReverseSorted") {
-    
-        std::iota(arr.rbegin(), arr.rend(), 0);
-        
-    } else if (input_type == "Random") {
-        srand(42);
-        
-        for (int i = 0; i < input_size; i++) {
-            arr[i] = rand() % input_size;
-        }
-    } else if (input_type == "1_perc_perturbed") {
-    
-        for (int i = 0; i < input_size; i++) {
-            arr[i] = i;
-        }
-        num_unsorted = input_size / 100;
-        for (int i = 0; i < num_unsorted; i++) {
-            int idx1 = rand() % input_size;
-            int idx2 = rand() % input_size;
-            std::swap(arr[idx1], arr[idx2]);
-        }
+        arr = std::move(local_arr);
     }
 }
 
 bool correctness_check(const std::vector<int>& arr) {
-    CALI_CXX_MARK_FUNCTION;
-    printf("Success");
-    return std::is_sorted(arr.begin(), arr.end());
+    CALI_MARK_BEGIN("correctness_check");
+    bool is_sorted = std::is_sorted(arr.begin(), arr.end());
+    CALI_MARK_END("correctness_check");
+    return is_sorted;
 }
 
 int main(int argc, char** argv) {
-    CALI_CXX_MARK_FUNCTION;
+    CALI_MARK_BEGIN("main");
 
-    MPI_Init(&argc, &argv);
+    int provided;
+    MPI_Init_thread(&argc, &argv, MPI_THREAD_MULTIPLE, &provided);
 
     int world_rank, world_size;
     MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
     MPI_Comm_size(MPI_COMM_WORLD, &world_size);
 
-    int input_size = 0;
-    if (world_rank == 0) {
-        //Check command line arguments
-        if (argc != 2) {
-            std::cerr << "Usage: " << argv[0] << " <array_size>" << std::endl;
-            MPI_Abort(MPI_COMM_WORLD, 1);
+
+    if (argc != 3) {
+        if (world_rank == 0) {
+            std::cerr << "Usage: " << argv[0] << " <array_size> <input_type>" << std::endl;
         }
-        
-        input_size = std::atoi(argv[1]);
+        MPI_Finalize();
+        return 1;
     }
 
-    MPI_Bcast(&input_size, 1, MPI_INT, 0, MPI_COMM_WORLD);
+    size_t input_size = std::atoi(argv[1]);
+    std::string input_type = argv[2];
     
-    //To collect metadata
     adiak::init(NULL);
     adiak::launchdate();
     adiak::libraries();
@@ -992,52 +1047,30 @@ int main(int argc, char** argv) {
     adiak::value("programming_model", "mpi");
     adiak::value("data_type", "int");
     adiak::value("size_of_data_type", sizeof(int));
-
-    //Set input type used for generating data
-    std::string input_type = "Random";
-    const int max_type_length = 20;
-    char input_type_c[max_type_length];
-    if (world_rank == 0) {
-        strncpy(input_type_c, input_type.c_str(), max_type_length - 1);
-        input_type_c[max_type_length - 1] = '\0';
-    }
     
-    MPI_Bcast(input_type_c, max_type_length, MPI_CHAR, 0, MPI_COMM_WORLD);
-    
-    if (world_rank != 0) {
-        input_type = std::string(input_type_c);
-    }
-
     adiak::value("input_size", input_size);
     adiak::value("input_type", input_type);
     adiak::value("num_procs", world_size);
     adiak::value("scalability", "strong");
     adiak::value("group_num", 17);
     adiak::value("implementation_source", "handwritten");
-    
-    //Create array based on input size and geenrate data
-    std::vector<int> arr(input_size);
+
+    std::vector<int> arr;
     if (world_rank == 0) {
-        CALI_MARK_BEGIN("data_init_runtime");
         data_init_runtime(arr, input_size, input_type);
-        CALI_MARK_END("data_init_runtime");
     }
 
     MPI_Barrier(MPI_COMM_WORLD);
 
-    //Call parallel sort merge
-    parallelMergeSort(arr, input_size, world_rank, world_size);
+    parallelMergeSort(arr, world_rank, world_size);
 
-    //Check correctness of sorted array
     if (world_rank == 0) {
-        CALI_MARK_BEGIN("correctness_check");
         bool is_sorted = correctness_check(arr);
-        CALI_MARK_END("correctness_check");
-
-        
     }
-   
+
     MPI_Finalize();
+    CALI_MARK_END("main");
+
     return 0;
 }
 ```
@@ -1296,6 +1329,31 @@ perform runs that invoke algorithm2 for Sorted, ReverseSorted, and Random data).
 </div>
 
 ```Above we can see the computation and communication performance for input sizes of 2^16, 2^22, and 2^28 (you can view all the graphs generated in the samplesortgraphs folder). One trend we can analyze amongst all of these is that as we increase the input size, we see an increase in the total time over both computation and communication. We also see an overall decline in the average communication and computation time as we increase the number of processes. It is important to note that on the smallest input size, 2^16, it seems that there is a point when increasing the number of processors does drop the total time significantly, but then it keeps increasing. It can also be seen that as the input size increases, the randomly generated input (as seen on the communication side) takes more time on average comapred to either sorted, reverse sorted, or sorted 1% perturbed. Because we are observing the the min, max, average time per rank, we can see that as the number of processes increases, on average the time for computation per each one is definitely decreasing. The reason we see an increase in the total time is because we are looking at the total time as an overall unit compared to per each rank as I said before. So instead if we observe the average time per rank for both communication and computation we can see that as more processors are introduced, more overhead is introduced in terms of communication, which explains the increase in average time/rank for that, but in terms of computation, the average time per processor is definitely decreasing.```
+
+# Merge Sort - Performance Evaluation
+
+## Data Set Size: 268,435,456
+
+<div style="display: flex;">
+  <img src="/merge_sort/mergesort_performance_eval_graphs/comp_large_268435456_performance.png" alt="Performance Metrics 268435456 - comp_large" style="width: 45%; margin-right: 10px;">
+  <img src="/merge_sort/mergesort_performance_eval_graphs/comm_268435456_performance.png" alt="Performance Metrics 268435456 - comm" style="width: 45%;">
+</div>
+
+## Data Set Size: 4,194,304
+
+<div style="display: flex;">
+  <img src="/merge_sort/mergesort_performance_eval_graphs/comp_large_4194304_performance.png" alt="Performance Metrics 4194304 - comp_large" style="width: 45%; margin-right: 10px;">
+  <img src="/merge_sort/mergesort_performance_eval_graphs/comm_4194304_performance.png" alt="Performance Metrics 4194304 - comm" style="width: 45%;">
+</div>
+
+## Data Set Size: 65,536
+
+<div style="display: flex;">
+  <img src="/merge_sort/mergesort_performance_eval_graphs/comp_large_65536_performance.png" alt="Performance Metrics 65536 - comp_large" style="width: 45%; margin-right: 10px;">
+  <img src="/merge_sort/mergesort_performance_eval_graphs/comm_65536_performance.png" alt="Performance Metrics 65536 - comm" style="width: 45%;">
+</div>
+
+```The plots that are displayed above show different computational and communication performance metrics for input sizes of 2^16, 2^22, and 2^28. To begin by explaining the graphs, there are 5 plots covering the Min time/rank, Max time/rank, Avg time/rank, Total time, and Variance time/rank. In addition to this, for each of these metrics, it was tested on 4 different types of input. These include random, sorted, reverse sorted and sorted with 1% perturbed. Now to dig into the trends and analysis of these different graphs. For the first graph which is of size 2^28, for communication, it can be seen that as the number of processes increases there is a steady increase in the total time as well. This repeats for each of the 5 metrics in communication. In contrast, for the computation side, it can be seen that as the number of processes increases, the time also increases. It is important to note that geenrally it appears that random input tends to take more time in general. For the comp region it can be seen that avg time/rank deceases rapidly at first but then it stabilizes.```
 
 # Radix Sort - Performance Evaluation
 
