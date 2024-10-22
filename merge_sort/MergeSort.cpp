@@ -100,14 +100,7 @@ void parallelMergeSort(std::vector<int>& arr, int world_rank, int world_size) {
     CALI_MARK_BEGIN("comm");
     CALI_MARK_BEGIN("comm_large");
     
-    int result = MPI_Scatterv(world_rank == 0 ? arr.data() : nullptr, sendcounts.data(), displs.data(), MPI_INT,
-                              local_arr.data(), local_size, MPI_INT, 0, MPI_COMM_WORLD);
-    if (result != MPI_SUCCESS) {
-        char error_string[MPI_MAX_ERROR_STRING];
-        int length_of_error_string;
-        MPI_Error_string(result, error_string, &length_of_error_string);
-        MPI_Abort(MPI_COMM_WORLD, result);
-    }
+    int result = MPI_Scatterv(world_rank == 0 ? arr.data() : nullptr, sendcounts.data(), displs.data(), MPI_INT, local_arr.data(), local_size, MPI_INT, 0, MPI_COMM_WORLD);
     
     CALI_MARK_END("comm_large");
     CALI_MARK_END("comm");
@@ -141,13 +134,6 @@ void parallelMergeSort(std::vector<int>& arr, int world_rank, int world_size) {
                 received_arr.resize(actual_size);
                 
                 result = MPI_Recv(received_arr.data(), actual_size, MPI_INT, world_rank + step, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-                if (result != MPI_SUCCESS) {
-                    char error_string[MPI_MAX_ERROR_STRING];
-                    int length_of_error_string;
-                    MPI_Error_string(result, error_string, &length_of_error_string);
-                    log_message("MPI_Recv error: " + std::string(error_string), world_rank, __func__);
-                    MPI_Abort(MPI_COMM_WORLD, result);
-                }
 
                 CALI_MARK_END("comm_large");
                 CALI_MARK_END("comm");
@@ -169,13 +155,6 @@ void parallelMergeSort(std::vector<int>& arr, int world_rank, int world_size) {
                 CALI_MARK_BEGIN("comm_large");
                 
                 result = MPI_Send(local_arr.data(), local_arr.size(), MPI_INT, target, 0, MPI_COMM_WORLD);
-                if (result != MPI_SUCCESS) {
-                    char error_string[MPI_MAX_ERROR_STRING];
-                    int length_of_error_string;
-                    MPI_Error_string(result, error_string, &length_of_error_string);
-                    log_message("MPI_Send error: " + std::string(error_string), world_rank, __func__);
-                    MPI_Abort(MPI_COMM_WORLD, result);
-                }
                 
                 CALI_MARK_END("comm_large");
                 CALI_MARK_END("comm");
