@@ -1359,6 +1359,30 @@ perform runs that invoke algorithm2 for Sorted, ReverseSorted, and Random data).
 
 ```The generated plots provide insights into the performance metrics of different computational tasks across input sizes of 2^16, 2^22, and 2^28 and various input types (you can view all the graphs generated in the radixsort_performance_eval_graphs folder). For each input size, we observe how different input types (Random, Sorted, Reverse Sorted, and Sorted with 1% perturbed) affect key metrics such as Min time/rank, Max time/rank, Avg time/rank, Total time, and Variance time/rank. In general, as the number of processes increases, the average time per rank decreases, this shows a strong scalability for larger workloads. The total execution time also shows a reduction with increasing numbers of processes, this shows that parallelization is effective. But there are variations between input types. For example, the Sorted input tends to perform better in terms of consistency, as indicated by lower variance, while the Random and Reverse Sorted inputs often show higher fluctuations in time metrics. The plots also highlight the diminishing returns in performance gains beyond a certain number of processes, especially for smaller input sizes.```
 
+# Bitonic Sort - Performance Evaluation
+
+## Data Set Size: 268,435,456
+
+<div style="display: flex;">
+  <img src="/Bitonicsort/performance/performance_metrics_268435456_comp_large.png" alt="Performance Metrics 268435456 - comp_large" style="width: 45%; margin-right: 10px;">
+  <img src="/Bitonicsort/performance/performance_metrics_268435456_comm.png" alt="Performance Metrics 268435456 - comm" style="width: 45%;">
+</div>
+
+## Data Set Size: 4,194,304
+
+<div style="display: flex;">
+  <img src="/Bitonicsort/performance/performance_metrics_4194304_comp_large.png" alt="Performance Metrics 4194304 - comp_large" style="width: 45%; margin-right: 10px;">
+  <img src="/Bitonicsort/performance/performance_metrics_4194304_comm.png" alt="Performance Metrics 4194304 - comm" style="width: 45%;">
+</div>
+
+## Data Set Size: 65,536
+
+<div style="display: flex;">
+  <img src="/Bitonicsort/performance/performance_metrics_65536_comp_large.png" alt="Performance Metrics 65536 - comp_large" style="width: 45%; margin-right: 10px;">
+  <img src="/Bitonicsort/performance/performance_metrics_65536_comm.png" alt="Performance Metrics 65536 - comm" style="width: 45%;">
+</div>
+
+```The generated plots provide insights into the performance metrics of different computational tasks across input sizes of 2^16, 2^22, and 2^28 and various input types (you can view all the graphs generated in the radixsort_performance_eval_graphs folder). For each input size, we observe how different input types (Random, Sorted, Reverse Sorted, and Sorted with 1% perturbed) affect key metrics such as Min time/rank, Max time/rank, Avg time/rank, Total time, and Variance time/rank. In general, as the number of processes increases, the average time per rank decreases, this shows a strong scalability for larger workloads. The total execution time also shows a reduction with increasing numbers of processes, this shows that parallelization is effective. But there are variations between input types. For example, the Sorted input tends to perform better in terms of consistency, as indicated by lower variance, while the Random and Reverse Sorted inputs often show higher fluctuations in time metrics. The plots also highlight the diminishing returns in performance gains beyond a certain number of processes, especially for smaller input sizes.```
 ## 5. Presentation
 Plots for the presentation should be as follows:
 - For each implementation:
