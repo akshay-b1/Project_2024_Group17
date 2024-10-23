@@ -1,0 +1,1439 @@
+<!DOCTYPE html><html><head>
+      <title>Report</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///c:\Users\Jesung\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.8.14\crossnote\dependencies\katex\katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="csce-435-group-project">CSCE 435 Group project </h1>
+<h2 id="0-group-number-17">0. Group number: 17 </h2>
+<h2 id="1-group-members">1. Group members: </h2>
+<ol>
+<li>Jeffrey Slobodkin</li>
+<li>Aayush Garg</li>
+<li>Akshay Belhe</li>
+<li>Jesung Ha</li>
+</ol>
+<p>We will communicate via iMessage and Discord</p>
+<h2 id="2-project-topic-eg-parallel-sorting-algorithms">2. Project topic (e.g., parallel sorting algorithms) </h2>
+<h3 id="2a-brief-project-description-what-algorithms-will-you-be-comparing-and-on-what-architectures">2a. Brief project description (what algorithms will you be comparing and on what architectures) </h3>
+<ul>
+<li>Bitonic Sort: (Jesung Ha) : Parallel sorting algorithm that splits sequence into a bitonic sequence and perform bitonic merge to sort the sequence. Bitonic sequence is a sequence that monotonically increase and then decrease.</li>
+<li>Sample Sort (Aayush Garg) : a sorting algorithm that is a divide and conquer algorithm by paritioning the array into sub-intervals or buckets. In parallel, the buckets are then sorted individually across multiple processors and then concatenated together.</li>
+<li>Merge Sort: (Jeffrey Slobodkin): a comparison based sorting algorithm that uses divide and conquer by splitting the array many times until each has only one item. In parallel, they are sorted by merging the sublits across multiple processors into one list.</li>
+<li>Radix Sort (Akshay Belhe) : works by sorting numbers digit by digit, starting from the least significant digit. In parallel Radix Sort, the work of sorting each digit is split across multiple processors.</li>
+</ul>
+<h3 id="2b-pseudocode-for-each-parallel-algorithm">2b. Pseudocode for each parallel algorithm </h3>
+<ul>
+<li>
+<p>For MPI programs, include MPI calls you will use to coordinate between processes</p>
+</li>
+<li>
+<p>Bitonic Sort:</p>
+</li>
+</ul>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>function comp_swap(a, i ,j, direction):
+    //swap based on direction
+    if (direction == 1 and a[i]&gt;a[j]) or (direction == 0 and a[j] &gt; a[i]):
+      swap(a[i], a[j])
+
+
+function bitonic_merge(a, low, count, dir):
+    if count &gt; 1:
+      int k = count / 2
+      //compare and swap elements
+      for (i = low, i &lt; low +k, i++){
+        comp_swap(a, i, i+ k , dir)
+      }
+
+      //recursively merge
+      bitonic_merge(arr, low, k, dir)
+      bitonic_merge(arr, low+k, k, dir)
+
+
+function bitonic_sort(a, low, count, dir):
+    if (count &gt; 1):
+        int k = count / 2
+
+        // Sort first half in ascending order (dir = 1)
+        bitonic_sort(a, low, k, 1)
+
+        // Sort second half in descending order (dir = 0)
+        bitonic_sort(a, low + k, k, 0)
+
+        // Merge based on direction
+        bitonic_merge(a, low, count, dir)
+
+
+src = https://www.geeksforgeeks.org/bitonic-sort/#
+
+</code></pre><ul>
+<li>Sample Sort:</li>
+</ul>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>function sampleSort(A[1..n], k, p)
+    // if average bucket size is below a threshold switch to e.g. quicksort
+    if n / k &lt; threshold then smallSort(A) 
+    /* Step 1 */
+    select S = [S1, ..., S(p−1)k] randomly from // select samples
+    sort S // sort sample
+    [s0, s1, ..., sp−1, sp] &lt;- [-∞, Sk, S2k, ..., S(p−1)k, ∞] // select splitters
+    /* Step 2 */
+    for each a in A
+        find j such that sj−1 &lt; a &lt;= sj
+        place a in bucket bj
+    /* Step 3 and concatenation */
+    return concatenate(sampleSort(b1), ..., sampleSort(bk))
+
+src: https://en.wikipedia.org/wiki/Samplesort
+</code></pre><ul>
+<li>Merge Sort:</li>
+</ul>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>function parallelMergesort(A, lo, hi, B, off):
+    len := hi - lo + 1               
+    if len == 1 then
+        B[off] := A[lo]                
+    else:
+        T := new array of length len   
+        mid := floor((lo + hi) / 2)    
+        mid' := mid - lo + 1           
+        fork parallelMergesort(A, lo, mid, T, 1)
+        parallelMergesort(A, mid + 1, hi, T, mid' + 1) 
+        join                             
+        parallelMerge(T, 1, mid', mid' + 1, len, B, off)
+
+src: https://en.wikipedia.org/wiki/Merge_sort
+</code></pre><ul>
+<li>Radix Sort:</li>
+</ul>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>function parallel_radix_sort(input_array, num_processors)
+    max_value = find_max(input_array)
+    
+    for digit in each digit of(max_value):
+        local_array = mpi_scatter(input_array, num_processors)
+        local_count = count_digits(local_array, digit)
+        global_count = mpi_gather(local_count, root=0)
+
+        if rank == 0:
+            prefix_sum = compute_prefix_sum(global_count)
+
+        prefix_sum = mpi_broadcast(prefix_sum, root=0)
+        sorted_local_array = redistribute(local_array, prefix_sum)
+        sorted_array = gather(sorted_local_array, root=0)
+
+        if rank == 0:
+            input_array = sorted_array
+
+    return sorted_array
+</code></pre><ul>
+<li>MPI Calls:
+<ul>
+<li>MPI_Scatter()</li>
+<li>MPI_Gather()</li>
+<li>MPI_Bcast()</li>
+</ul>
+</li>
+</ul>
+<h3 id="2c-evaluation-plan---what-and-how-will-you-measure-and-compare">2c. Evaluation plan - what and how will you measure and compare </h3>
+<ul>
+<li>
+<p>Input sizes, Input types</p>
+<ul>
+<li>Input sizes
+<ul>
+<li>10^3, 10^5, 10^7, 10^9</li>
+</ul>
+</li>
+<li>Input types
+<ul>
+<li>Sorted, Sorted with 1% not sorted, Reverse sorted, Random</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Strong scaling (same problem size, increase number of processors/nodes)</p>
+<ul>
+<li>Problem Size: 10^7</li>
+<li>Number of Processors: 1, 2, 4, 8, 16, 32</li>
+</ul>
+</li>
+<li>
+<p>Weak scaling (increase problem size, increase number of processors)</p>
+<ul>
+<li>Problem Size: 10^7 in different intervals scaled to match rate at which processors are increasing</li>
+<li>Increase number of processors and problem size
+<ul>
+<li>(1 * 10^7, 2), (2 * 10^7, 4), (4 * 10^7, 8), (8 * 10^7, 16)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>We will be measuring:</p>
+<ul>
+<li>Execution Time: For each run, we will record the total execution time taken to sort the array.</li>
+<li>Speedup:<br>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mfrac><mtext>Time&nbsp;with&nbsp;1&nbsp;processor</mtext><mtext>Time&nbsp;with&nbsp;N&nbsp;processors</mtext></mfrac></mrow><annotation encoding="application/x-tex">\frac{\text{Time with 1 processor}}{\text{Time with N processors}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.2519em;vertical-align:-0.8804em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord">Time&nbsp;with&nbsp;N&nbsp;processors</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord">Time&nbsp;with&nbsp;1&nbsp;processor</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8804em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></li>
+<li>Efficiency:<br>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mfrac><mtext>Speedup</mtext><mtext>Number&nbsp;of&nbsp;processors</mtext></mfrac></mrow><annotation encoding="application/x-tex">\frac{\text{Speedup}}{\text{Number of processors}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.2519em;vertical-align:-0.8804em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord">Number&nbsp;of&nbsp;processors</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord">Speedup</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8804em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></li>
+</ul>
+</li>
+<li>
+<p>Versions to Compare: communication strategies (collectives vs. point-to-point) and parallelization strategies (master/worker vs. SPMD)</p>
+</li>
+</ul>
+<h3 id="3a-caliper-instrumentation">3a. Caliper instrumentation </h3>
+<p>Please use the caliper build <code>/scratch/group/csce435-f24/Caliper/caliper/share/cmake/caliper</code><br>
+(same as lab2 <a href="http://build.sh">build.sh</a>) to collect caliper files for each experiment you run.</p>
+<p>Your Caliper annotations should result in the following calltree<br>
+(use <code>Thicket.tree()</code> to see the calltree):</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>main
+|_ data_init_X      # X = runtime OR io
+|_ comm
+|    |_ comm_small
+|    |_ comm_large
+|_ comp
+|    |_ comp_small
+|    |_ comp_large
+|_ correctness_check
+</code></pre><p>Required region annotations:</p>
+<ul>
+<li><code>main</code> - top-level main function.
+<ul>
+<li><code>data_init_X</code> - the function where input data is generated or read in from file. Use <em>data_init_runtime</em> if you are generating the data during the program, and <em>data_init_io</em> if you are reading the data from a file.</li>
+<li><code>correctness_check</code> - function for checking the correctness of the algorithm output (e.g., checking if the resulting data is sorted).</li>
+<li><code>comm</code> - All communication-related functions in your algorithm should be nested under the <code>comm</code> region.
+<ul>
+<li>Inside the <code>comm</code> region, you should create regions to indicate how much data you are communicating (i.e., <code>comm_small</code> if you are sending or broadcasting a few values, <code>comm_large</code> if you are sending all of your local values).</li>
+<li>Notice that auxillary functions like MPI_init are not under here.</li>
+</ul>
+</li>
+<li><code>comp</code> - All computation functions within your algorithm should be nested under the <code>comp</code> region.
+<ul>
+<li>Inside the <code>comp</code> region, you should create regions to indicate how much data you are computing on (i.e., <code>comp_small</code> if you are sorting a few values like the splitters, <code>comp_large</code> if you are sorting values in the array).</li>
+<li>Notice that auxillary functions like data_init are not under here.</li>
+</ul>
+</li>
+<li><code>MPI_X</code> - You will also see MPI regions in the calltree if using the appropriate MPI profiling configuration (see <strong>Builds/</strong>). Examples shown below.</li>
+</ul>
+</li>
+</ul>
+<p>All functions will be called from <code>main</code> and most will be grouped under either <code>comm</code> or <code>comp</code> regions, representing communication and computation, respectively. You should be timing as many significant functions in your code as possible. <strong>Do not</strong> time print statements or other insignificant operations that may skew the performance measurements.</p>
+<h3 id="nesting-code-regions-example---all-computation-code-regions-should-be-nested-in-the-comp-parent-code-region-as-following"><strong>Nesting Code Regions Example</strong> - all computation code regions should be nested in the "comp" parent code region as following: </h3>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>CALI_MARK_BEGIN("comp");
+CALI_MARK_BEGIN("comp_small");
+sort_pivots(pivot_arr);
+CALI_MARK_END("comp_small");
+CALI_MARK_END("comp");
+
+# Other non-computation code
+...
+
+CALI_MARK_BEGIN("comp");
+CALI_MARK_BEGIN("comp_large");
+sort_values(arr);
+CALI_MARK_END("comp_large");
+CALI_MARK_END("comp");
+</code></pre><h3 id="calltree-example"><strong>Calltree Example</strong>: </h3>
+<pre data-role="codeBlock" data-info="" class="language-text"><code># MPI Mergesort
+4.695 main
+├─ 0.001 MPI_Comm_dup
+├─ 0.000 MPI_Finalize
+├─ 0.000 MPI_Finalized
+├─ 0.000 MPI_Init
+├─ 0.000 MPI_Initialized
+├─ 2.599 comm
+│  ├─ 2.572 MPI_Barrier
+│  └─ 0.027 comm_large
+│     ├─ 0.011 MPI_Gather
+│     └─ 0.016 MPI_Scatter
+├─ 0.910 comp
+│  └─ 0.909 comp_large
+├─ 0.201 data_init_runtime
+└─ 0.440 correctness_check
+</code></pre><h3 id="3b-collect-metadata">3b. Collect Metadata </h3>
+<p>Have the following code in your programs to collect metadata:</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>adiak::init(NULL);
+adiak::launchdate();    // launch date of the job
+adiak::libraries();     // Libraries used
+adiak::cmdline();       // Command line used to launch the job
+adiak::clustername();   // Name of the cluster
+adiak::value("algorithm", algorithm); // The name of the algorithm you are using (e.g., "merge", "bitonic")
+adiak::value("programming_model", programming_model); // e.g. "mpi"
+adiak::value("data_type", data_type); // The datatype of input elements (e.g., double, int, float)
+adiak::value("size_of_data_type", size_of_data_type); // sizeof(datatype) of input elements in bytes (e.g., 1, 2, 4)
+adiak::value("input_size", input_size); // The number of elements in input dataset (1000)
+adiak::value("input_type", input_type); // For sorting, this would be choices: ("Sorted", "ReverseSorted", "Random", "1_perc_perturbed")
+adiak::value("num_procs", num_procs); // The number of processors (MPI ranks)
+adiak::value("scalability", scalability); // The scalability of your algorithm. choices: ("strong", "weak")
+adiak::value("group_num", group_number); // The number of your group (integer, e.g., 1, 10)
+adiak::value("implementation_source", implementation_source); // Where you got the source code of your algorithm. choices: ("online", "ai", "handwritten").
+</code></pre><p>They will show up in the <code>Thicket.metadata</code> if the caliper file is read into Thicket.</p>
+<ul>
+<li>Bitonic Sort:</li>
+</ul>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>#include &lt;mpi.h&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+#include &lt;iostream&gt;
+#include &lt;cmath&gt;
+#include &lt;caliper/cali.h&gt;
+#include &lt;adiak.hpp&gt;
+#include &lt;string&gt;
+
+#define MASTER 0
+
+void bitonicCompare(std::vector&lt;int&gt;&amp; arr, int i, int j, bool dir) {
+    if (dir == (arr[i] &gt; arr[j])) {
+        std::swap(arr[i], arr[j]);
+    }
+}
+
+// Bitonic merge function
+void bitonicMerge(std::vector&lt;int&gt;&amp; arr, int low, int cnt, bool dir) {
+    if (cnt &gt; 1) {
+        int k = cnt / 2;
+        for (int i = low; i &lt; low + k; i++) {
+            bitonicCompare(arr, i, i + k, dir);
+        }
+        bitonicMerge(arr, low, k, dir);
+        bitonicMerge(arr, low + k, k, dir);
+    }
+}
+
+// Bitonic sort function
+void bitonicSort(std::vector&lt;int&gt;&amp; arr, int low, int cnt, bool dir) {
+    if (cnt &gt; 1) {
+        int k = cnt / 2;
+        bitonicSort(arr, low, k, true);  // Sort in ascending order
+        bitonicSort(arr, low + k, k, false);  // Sort in descending order
+        bitonicMerge(arr, low, cnt, dir);  // Merge the result
+    }
+}
+
+// Parallel bitonic sort with MPI
+void parallelBitonicSort(std::vector&lt;int&gt;&amp; local_arr, int world_rank, int world_size) {
+    int local_size = local_arr.size();
+
+    for (int step = 2; step &lt;= world_size * local_size; step *= 2) {
+    for (int substep = step / 2; substep &gt; 0; substep /= 2) {
+        for (int i = 0; i &lt; local_size; i++) {
+            int j = i ^ substep;
+            int proc = j / local_size;
+
+            if (proc == world_rank) {
+                // Bitonic compare within the process
+                bitonicCompare(local_arr, i % local_size, j % local_size, (i / step) % 2 == 0);
+            } else {
+                // Communication between processes
+                int partner_rank = world_rank ^ (substep / local_size);
+                int send_val = local_arr[i];
+                int recv_val;
+
+                MPI_Sendrecv(&amp;send_val, 1, MPI_INT, partner_rank, 0,
+                             &amp;recv_val, 1, MPI_INT, partner_rank, 0,
+                             MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+
+                // Perform the comparison based on the step's direction
+                if ((i / step) % 2 == 0) {
+                    local_arr[i] = std::min(send_val, recv_val);
+                } else {
+                    local_arr[i] = std::max(send_val, recv_val);
+                }
+            }
+        }
+    }
+}
+
+}
+
+
+void data_init_runtime(std::vector&lt;int&gt;&amp; arr, int input_size, int input_type) {
+    arr.resize(input_size);
+    int num_unsorted = 0;
+
+    switch (input_type) {
+        case 0: // Sorted
+            for (int i = 0; i &lt; input_size; i++) {
+                arr[i] = i;
+            }
+            break;
+        case 1: // Reverse sorted
+            for (int i = 0; i &lt; input_size; i++) {
+                arr[i] = input_size - i;
+            }
+            break;
+        case 2: // Random
+            srand(42);
+            for (int i = 0; i &lt; input_size; i++) {
+                arr[i] = rand() % input_size;
+            }
+            break;
+    }
+}
+
+bool correctness_check(const std::vector&lt;int&gt;&amp; arr) {
+    return std::is_sorted(arr.begin(), arr.end());
+}
+
+int main(int argc, char** argv) {
+
+    MPI_Init(&amp;argc, &amp;argv);
+    CALI_MARK_BEGIN("main");
+    int world_rank, world_size;
+    MPI_Comm_rank(MPI_COMM_WORLD, &amp;world_rank);
+    MPI_Comm_size(MPI_COMM_WORLD, &amp;world_size);
+
+    adiak::init(NULL);
+    adiak::launchdate();
+    adiak::libraries();
+    adiak::cmdline();
+    adiak::clustername();
+    adiak::value("algorithm", "bitonic");
+    adiak::value("programming_model", "mpi");
+    adiak::value("data_type", "int");
+    adiak::value("size_of_data_type", sizeof(int));
+
+    if (argc != 3) {
+        if (world_rank == MASTER) {
+            std::cerr &lt;&lt; "Usage: " &lt;&lt; argv[0] &lt;&lt; " &lt;input_size&gt; &lt;input_type&gt;" &lt;&lt; std::endl;
+            std::cerr &lt;&lt; "Input types: 0 - Sorted, 1 - Sorted with 1% Not Sorted, 2 - Reverse Sorted, 3 - Random" &lt;&lt; std::endl;
+        }
+        MPI_Abort(MPI_COMM_WORLD, 1);
+    }
+
+    int input_size = std::atoi(argv[1]);
+    int input_type = std::atoi(argv[2]);
+
+    adiak::value("input_size", input_size);
+    adiak::value("input_type", input_type);
+    adiak::value("num_procs", world_size);
+    adiak::value("scalability", "strong");
+    adiak::value("group_num", 17);
+    adiak::value("implementation_source", "handwritten");
+
+    std::vector&lt;int&gt; arr(input_size);
+    if (world_rank == MASTER) {
+        CALI_MARK_BEGIN("data_init_runtime");
+        data_init_runtime(arr, input_size, input_type);
+        CALI_MARK_END("data_init_runtime");
+    }
+
+    int local_size = input_size / world_size;
+    std::vector&lt;int&gt; local_arr(local_size);
+
+    CALI_MARK_BEGIN("comm");
+    CALI_MARK_BEGIN("comm_large");
+    MPI_Scatter(arr.data(), local_size, MPI_INT, local_arr.data(), local_size, MPI_INT, MASTER, MPI_COMM_WORLD);
+    CALI_MARK_END("comm_large");
+    CALI_MARK_END("comm");
+
+    MPI_Barrier(MPI_COMM_WORLD);
+
+    double start_time = MPI_Wtime();
+    CALI_MARK_BEGIN("comp");
+    CALI_MARK_BEGIN("comp_large");
+    parallelBitonicSort(local_arr, world_rank, world_size);
+    CALI_MARK_END("comp_large");
+    CALI_MARK_END("comp");
+    double end_time = MPI_Wtime();
+
+    CALI_MARK_BEGIN("comm");
+    CALI_MARK_BEGIN("comm_large");
+    MPI_Gather(local_arr.data(), local_size, MPI_INT, arr.data(), local_size, MPI_INT, MASTER, MPI_COMM_WORLD);
+    CALI_MARK_END("comm_large");
+    CALI_MARK_END("comm");
+
+    if (world_rank == MASTER) {
+        CALI_MARK_BEGIN("correctness_check");
+        bool is_sorted = correctness_check(arr);
+        CALI_MARK_END("correctness_check");
+        for(int i = 0; i &lt; arr.size(); i++){
+            std::cout &lt;&lt; std::to_string(arr[i]);
+        }
+        std::cout &lt;&lt; std::endl;
+        if (is_sorted) {
+            std::cout &lt;&lt; "Array is correctly sorted." &lt;&lt; std::endl;
+        } else {
+            std::cout &lt;&lt; "Array is not correctly sorted." &lt;&lt; std::endl;
+        }
+    }
+
+    double local_time = end_time - start_time;
+    double max_time, min_time, avg_time, total_time;
+
+    MPI_Reduce(&amp;local_time, &amp;max_time, 1, MPI_DOUBLE, MPI_MAX, MASTER, MPI_COMM_WORLD);
+    MPI_Reduce(&amp;local_time, &amp;min_time, 1, MPI_DOUBLE, MPI_MIN, MASTER, MPI_COMM_WORLD);
+    MPI_Reduce(&amp;local_time, &amp;total_time, 1, MPI_DOUBLE, MPI_SUM, MASTER, MPI_COMM_WORLD);
+
+    if (world_rank == MASTER) {
+        avg_time = total_time / world_size;
+        std::cout &lt;&lt; "Min time: " &lt;&lt; min_time &lt;&lt; " seconds" &lt;&lt; std::endl;
+        std::cout &lt;&lt; "Max time: " &lt;&lt; max_time &lt;&lt; " seconds" &lt;&lt; std::endl;
+        std::cout &lt;&lt; "Avg time: " &lt;&lt; avg_time &lt;&lt; " seconds" &lt;&lt; std::endl;
+        std::cout &lt;&lt; "Total time: " &lt;&lt; total_time &lt;&lt; " seconds" &lt;&lt; std::endl;
+    }
+    CALI_MARK_END("main");
+    MPI_Finalize();
+
+
+    return 0;
+}
+</code></pre><ul>
+<li>Sample Sort:</li>
+</ul>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>#include "mpi.h"
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;caliper/cali.h&gt;
+#include &lt;caliper/cali-manager.h&gt;
+#include &lt;adiak.hpp&gt;
+
+#define MASTER 0
+#define MAX_PRINT_SIZE 100
+
+void printArray(const char* name, int* arr, int size, int rank) {
+    printf("[Rank %d] %s (size=%d): ", rank, name, size);
+    int print_size = (size &lt; MAX_PRINT_SIZE) ? size : MAX_PRINT_SIZE;
+    for (int i = 0; i &lt; print_size; i++) {
+        printf("%d ", arr[i]);
+    }
+    if (size &gt; MAX_PRINT_SIZE) printf("...");
+    printf("\n");
+}
+
+int compare(const void* a, const void* b) {
+    return (*(int*)a - *(int*)b);
+}
+
+int main (int argc, char *argv[])
+{
+    CALI_CXX_MARK_FUNCTION;
+        
+    int sizeOfArray;
+    int inputType;    
+    if (argc == 3)
+    {
+        sizeOfArray = atoi(argv[1]);
+        inputType = atoi(argv[2]);        
+    }
+    else
+    {
+        printf("\n Please provide the size of the array and input type (0-3)");
+        return 0;
+    }
+
+    int numtasks, taskid, *localArray, *globalArray = NULL;
+
+    MPI_Init(&amp;argc,&amp;argv);
+    MPI_Comm_size(MPI_COMM_WORLD, &amp;numtasks);
+    MPI_Comm_rank(MPI_COMM_WORLD, &amp;taskid);
+
+    if (taskid == MASTER) {
+        printf("\n=== Starting MPI Sample Sort with %d processes ===\n", numtasks);
+        printf("Input size: %d\n", sizeOfArray);
+    }
+
+    cali::ConfigManager mgr;
+    mgr.start();
+
+    adiak::init(NULL);
+    adiak::user();
+    adiak::launchdate();
+    adiak::libraries();
+    adiak::cmdline();
+    adiak::clustername();
+    adiak::value("algorithm", "sample_sort");
+    adiak::value("programming_model", "mpi");
+    adiak::value("data_type", "int");
+    adiak::value("size_of_data_type", sizeof(int));
+    adiak::value("input_size", sizeOfArray);
+    adiak::value("num_procs", numtasks);
+    adiak::value("scalability", "strong");
+    adiak::value("implementation_source", "handwritten");
+    
+    switch(inputType) {
+        case 0:
+            adiak::value("input_type", "Random");
+            break;
+        case 1:
+            adiak::value("input_type", "Sorted");
+            break;
+        case 2:
+            adiak::value("input_type", "Reverse Sorted");
+            break;
+        case 3:
+            adiak::value("input_type", "Sorted with 1% perturbed");
+            break;
+        default:
+            adiak::value("input_type", "Unknown");
+    }        
+        
+    CALI_MARK_BEGIN("main");
+    int localSize = sizeOfArray / numtasks;
+    int remainder = sizeOfArray % numtasks;
+    if (taskid &lt; remainder) {
+        localSize++;
+    }
+
+    if (taskid == MASTER) {
+        printf("\nLocal size distribution:\n");
+        for (int i = 0; i &lt; numtasks; i++) {
+            int size = sizeOfArray / numtasks + (i &lt; remainder ? 1 : 0);
+            printf("Rank %d: %d elements\n", i, size);
+        }
+    }
+
+    localArray = (int*)malloc(localSize * sizeof(int));
+
+    // data of array generation --&gt; sorted, 1%purpuated, random, reverse sorted
+    CALI_MARK_BEGIN("data_init_runtime");
+    if (taskid == MASTER) {
+        globalArray = (int*)malloc(sizeOfArray * sizeof(int));
+        switch(inputType) {
+            case 0: // Random
+                for (int i = 0; i &lt; sizeOfArray; i++) {
+                    globalArray[i] = rand() % sizeOfArray;
+                }
+                break;
+            case 1: // Sorted
+                for (int i = 0; i &lt; sizeOfArray; i++) {
+                    globalArray[i] = i;
+                }
+                break;
+            case 2: // Reverse Sorted
+                for (int i = 0; i &lt; sizeOfArray; i++) {
+                    globalArray[i] = sizeOfArray - i - 1;
+                }
+                break;
+            case 3: // Sorted with 1% perturbed
+                for (int i = 0; i &lt; sizeOfArray; i++) {
+                    globalArray[i] = i;
+                }
+                int perturbCount = sizeOfArray / 100;
+                for (int i = 0; i &lt; perturbCount; i++) {
+                    int idx = rand() % sizeOfArray;
+                    globalArray[idx] = rand() % sizeOfArray;
+                }
+                break;
+        }
+        printArray("Initial global array", globalArray, sizeOfArray, MASTER);
+    }
+    CALI_MARK_END("data_init_runtime");
+
+    // distribute data to ranks
+    CALI_MARK_BEGIN("comm");
+    CALI_MARK_BEGIN("comm_large");
+    int* sendcounts = (int*)malloc(numtasks * sizeof(int));
+    int* displacements = (int*)malloc(numtasks * sizeof(int));
+    
+    int displacement = 0;
+    for (int i = 0; i &lt; numtasks; i++) {
+        sendcounts[i] = sizeOfArray / numtasks;
+        if (i &lt; remainder) {
+            sendcounts[i]++;
+        }
+        displacements[i] = displacement;
+        displacement += sendcounts[i];
+    }
+
+    MPI_Scatterv(globalArray, sendcounts, displacements, MPI_INT, 
+                 localArray, sendcounts[taskid], MPI_INT, 
+                 MASTER, MPI_COMM_WORLD);
+    printf("[Rank %d] Received local array\n", taskid);
+    printArray("Local array before sorting", localArray, localSize, taskid);
+    CALI_MARK_END("comm_large");
+    CALI_MARK_END("comm");\
+
+    // sort locally
+    CALI_MARK_BEGIN("comp");
+    CALI_MARK_BEGIN("comp_large");
+    qsort(localArray, localSize, sizeof(int), compare);
+    printf("[Rank %d] Local array sorted\n", taskid);
+    CALI_MARK_END("comp_large");
+    CALI_MARK_END("comp");
+
+    // chose splitters
+    CALI_MARK_BEGIN("comp");
+    CALI_MARK_BEGIN("comp_small");
+    int* localSplitters = (int*)malloc((numtasks - 1) * sizeof(int));
+    for (int i = 0; i &lt; (numtasks - 1) ; i++) {
+        int tempI = (localSize * (i + 1)) / (numtasks);
+        localSplitters[i] = localArray[tempI];
+    }
+    printf("[Rank %d] Selected local splitters\n", taskid);
+    printArray("Local splitters", localSplitters, numtasks - 1, taskid);
+    CALI_MARK_END("comp_small");
+    CALI_MARK_END("comp");
+
+    // combine all local splitters
+    CALI_MARK_BEGIN("comm");
+    CALI_MARK_BEGIN("comm_small");
+    int* allSplitters = NULL;
+    if (taskid == MASTER) {
+        allSplitters = (int*)malloc(numtasks * (numtasks - 1) * sizeof(int));
+    }
+    MPI_Gather(localSplitters, (numtasks - 1), MPI_INT, 
+               allSplitters, (numtasks - 1), MPI_INT, 
+               MASTER, MPI_COMM_WORLD);
+    CALI_MARK_END("comm_small");
+    CALI_MARK_END("comm");
+
+    // chose global splitters
+    int* globalSplitters = NULL;
+    CALI_MARK_BEGIN("comp");
+    CALI_MARK_BEGIN("comp_small");
+    if (taskid == MASTER) {
+        printf("\n[Master] Gathered all splitters\n");
+        printArray("All gathered splitters", allSplitters, numtasks * (numtasks - 1), MASTER);
+        
+        qsort(allSplitters, numtasks * (numtasks - 1), sizeof(int), compare);
+        globalSplitters = (int*)malloc((numtasks - 1) * sizeof(int));
+        for (int i = 0; i &lt; numtasks - 1; i++) {
+            globalSplitters[i] = allSplitters[(i + 1) * (numtasks - 1)];
+        }
+
+        printf("[Master] Selected global splitters\n");
+        printArray("Global splitters", globalSplitters, numtasks - 1, MASTER);
+    } else {
+        globalSplitters = (int*)malloc((numtasks - 1) * sizeof(int));
+    }
+    CALI_MARK_END("comp_small");
+    CALI_MARK_END("comp");
+
+     // send all global splitters
+    CALI_MARK_BEGIN("comm");
+    CALI_MARK_BEGIN("comm_small");
+    MPI_Bcast(globalSplitters, numtasks - 1, MPI_INT, MASTER, MPI_COMM_WORLD);
+    CALI_MARK_END("comm_small");
+    CALI_MARK_END("comm");
+
+    // parition the data
+    CALI_MARK_BEGIN("comp");
+    CALI_MARK_BEGIN("comp_large");
+    int bucketSize = localSize + 1;
+    int* buckets = (int*)malloc(sizeof(int) * numtasks * bucketSize);
+    memset(buckets, 0, sizeof(int) * numtasks * bucketSize);
+    
+    int j = 0;
+    int k = 1;
+    for (int i = 0; i &lt; localSize; i++) {
+        if (j &lt; numtasks - 1) {
+            if (localArray[i] &lt; globalSplitters[j]) {
+                buckets[bucketSize * j + k++] = localArray[i];
+            } else {
+                buckets[bucketSize * j] = k - 1;  // store count at start of bucket
+                k = 1;
+                j++;
+                i--;  // reprocess current element
+            }
+        } else {
+            buckets[bucketSize * j + k++] = localArray[i];
+        }
+    }
+    buckets[bucketSize * j] = k - 1;  // store count for last bucket
+
+    printf("[Rank %d] Created buckets\n", taskid);
+    for (int i = 0; i &lt; numtasks; i++) {
+        printf("[Rank %d] Bucket %d size: %d\n", taskid, i, buckets[bucketSize * i]);
+    }
+    CALI_MARK_END("comp_large");
+    CALI_MARK_END("comp");
+
+    // all to all communication
+    CALI_MARK_BEGIN("comm");
+    CALI_MARK_BEGIN("comm_large");
+    int* bucketBuffer = (int*)malloc(sizeof(int) * numtasks * bucketSize);
+    MPI_Alltoall(buckets, bucketSize, MPI_INT, 
+                 bucketBuffer, bucketSize, MPI_INT, 
+                 MPI_COMM_WORLD);
+    CALI_MARK_END("comm_large");
+    CALI_MARK_END("comm");
+
+     // redistribution
+    CALI_MARK_BEGIN("comp");
+    CALI_MARK_BEGIN("comp_large");
+    int* localBucket = (int*)malloc(sizeof(int) * 2 * localSize);
+    int count = 1;
+    
+    for (j = 0; j &lt; numtasks; j++) {
+        k = 1;
+        for (int i = 0; i &lt; bucketBuffer[bucketSize * j]; i++) {
+            localBucket[count++] = bucketBuffer[bucketSize * j + k++];
+        }
+    }
+    localBucket[0] = count - 1;
+
+    // local sort again
+    printf("[Rank %d] Combined local bucket size: %d\n", taskid, localBucket[0]);
+    printArray("Combined local bucket", &amp;localBucket[1], localBucket[0], taskid);
+
+    qsort(&amp;localBucket[1], localBucket[0], sizeof(int), compare);
+    printf("[Rank %d] Final sorted local portion\n", taskid);
+    printArray("Sorted local portion", &amp;localBucket[1], localBucket[0], taskid);
+    CALI_MARK_END("comp_large");
+    CALI_MARK_END("comp");
+
+    // gather results
+    CALI_MARK_BEGIN("correctness_check");
+    int* finalArray = NULL;
+    int* allCounts = NULL;
+    if (taskid == MASTER) {
+        allCounts = (int*)malloc(numtasks * sizeof(int));
+    }
+
+    MPI_Gather(&amp;localBucket[0], 1, MPI_INT, 
+               allCounts, 1, MPI_INT, 
+               MASTER, MPI_COMM_WORLD);
+
+    if (taskid == MASTER) {
+        int totalSize = 0;
+        for (int i = 0; i &lt; numtasks; i++) {
+             printf("Rank %d: %d elements\n", i, allCounts[i]);
+            totalSize += allCounts[i];
+        }
+        finalArray = (int*)malloc(totalSize * sizeof(int));
+        
+        int* gatherDisplacements = (int*)malloc(numtasks * sizeof(int));
+        gatherDisplacements[0] = 0;
+        for (int i = 1; i &lt; numtasks; i++) {
+            gatherDisplacements[i] = gatherDisplacements[i-1] + allCounts[i-1];
+        }
+
+        MPI_Gatherv(&amp;localBucket[1], localBucket[0], MPI_INT,
+                    finalArray, allCounts, gatherDisplacements, MPI_INT,
+                    MASTER, MPI_COMM_WORLD);
+        
+        printf("\n[Master] Final gathered array\n");
+        printArray("Final sorted array", finalArray, totalSize, MASTER);
+
+        int isSorted = 1;
+        for (int i = 1; i &lt; totalSize; i++) {
+            if (finalArray[i] &lt; finalArray[i-1]) {
+                isSorted = 0;
+                break;
+            }
+        }
+        printf("Array is %s\n", isSorted ? "correctly sorted" : "not sorted");
+        
+        free(gatherDisplacements);
+    } else {
+        MPI_Gatherv(&amp;localBucket[1], localBucket[0], MPI_INT,
+                    NULL, NULL, NULL, MPI_INT,
+                    MASTER, MPI_COMM_WORLD);
+    }
+    CALI_MARK_END("correctness_check");
+    CALI_MARK_END("main");
+
+    free(localArray);
+    free(localSplitters);
+    free(globalSplitters);
+    free(buckets);
+    free(bucketBuffer);
+    free(localBucket);
+    free(sendcounts);
+    free(displacements);
+    if (taskid == MASTER) {
+        free(globalArray);
+        free(allSplitters);
+        free(allCounts);
+        free(finalArray);
+    }
+
+    mgr.stop();
+    mgr.flush();
+    MPI_Finalize();
+    return 0;
+}
+</code></pre><ul>
+<li>Merge Sort:</li>
+</ul>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>#include &lt;mpi.h&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+#include &lt;iostream&gt;
+#include &lt;random&gt;
+#include &lt;cstdlib&gt;
+#include &lt;chrono&gt;
+#include &lt;caliper/cali.h&gt;
+#include &lt;caliper/cali-manager.h&gt;
+#include &lt;adiak.hpp&gt;
+#include &lt;sstream&gt;
+
+void merge(std::vector&lt;int&gt;&amp; arr, long long left, long long mid, long long right) {
+    std::vector&lt;int&gt; temp(right - left + 1);
+    int i = left, j = mid + 1, k = 0;
+
+    while (i &lt;= mid &amp;&amp; j &lt;= right) {
+        if (arr[i] &lt;= arr[j]) {
+            temp[k++] = arr[i++];
+        } else {
+            temp[k++] = arr[j++];
+        }
+    }
+
+    while (i &lt;= mid) {
+        temp[k++] = arr[i++];
+    }
+
+    while (j &lt;= right) {
+        temp[k++] = arr[j++];
+    }
+
+    for (int p = 0; p &lt; k; p++) {
+        arr[left + p] = temp[p];
+    }
+}
+
+void mergeSort(std::vector&lt;int&gt;&amp; arr, long long left, long long right) {
+    if (left &lt; right) {
+        int mid = left + (right - left) / 2;
+        mergeSort(arr, left, mid);
+        mergeSort(arr, mid + 1, right);
+        merge(arr, left, mid, right);
+    }
+}
+
+void data_init_runtime(std::vector&lt;int&gt;&amp; arr, long long input_size, const std::string&amp; input_type) {
+    CALI_MARK_BEGIN("data_init_runtime");
+    arr.resize(input_size);
+    if (input_type == "Sorted") {
+        std::iota(arr.begin(), arr.end(), 0);
+    } else if (input_type == "ReverseSorted") {
+        std::iota(arr.rbegin(), arr.rend(), 0);
+    } else if (input_type == "Random") {
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_int_distribution&lt;&gt; dis(0, input_size - 1);
+        for (int&amp; num : arr) {
+            num = dis(gen);
+        }
+    } else if (input_type == "1_perc_perturbed") {
+        std::iota(arr.begin(), arr.end(), 0);
+        int num_perturbed = input_size / 100;
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_int_distribution&lt;&gt; dis(0, input_size - 1);
+        for (int i = 0; i &lt; num_perturbed; ++i) {
+            int idx1 = dis(gen);
+            int idx2 = dis(gen);
+            std::swap(arr[idx1], arr[idx2]);
+        }
+    }
+    CALI_MARK_END("data_init_runtime");
+}
+
+void parallelMergeSort(std::vector&lt;int&gt;&amp; arr, int world_rank, int world_size) {    
+    size_t total_size = (world_rank == 0) ? arr.size() : 0;
+    MPI_Bcast(&amp;total_size, 1, MPI_UNSIGNED_LONG_LONG, 0, MPI_COMM_WORLD);
+    
+    size_t base_chunk_size = total_size / world_size;
+    size_t remainder = total_size % world_size;
+    
+    std::vector&lt;int&gt; sendcounts(world_size);
+    std::vector&lt;int&gt; displs(world_size);
+    
+    size_t offset = 0;
+    for (int i = 0; i &lt; world_size; ++i) {
+        sendcounts[i] = static_cast&lt;int&gt;(base_chunk_size + (i &lt; remainder ? 1 : 0));
+        displs[i] = static_cast&lt;int&gt;(offset);
+        offset += sendcounts[i];
+    }
+    
+    // Broadcast sendcounts to all processes
+    MPI_Bcast(sendcounts.data(), world_size, MPI_INT, 0, MPI_COMM_WORLD);
+    
+    size_t local_size = sendcounts[world_rank];
+    std::vector&lt;int&gt; local_arr(local_size);
+    
+    
+    CALI_MARK_BEGIN("comm");
+    CALI_MARK_BEGIN("comm_large");
+    
+    int result = MPI_Scatterv(world_rank == 0 ? arr.data() : nullptr, sendcounts.data(), displs.data(), MPI_INT, local_arr.data(), local_size, MPI_INT, 0, MPI_COMM_WORLD);
+    
+    CALI_MARK_END("comm_large");
+    CALI_MARK_END("comm");
+
+    CALI_MARK_BEGIN("comp");
+    CALI_MARK_BEGIN("comp_large");
+    
+    mergeSort(local_arr, 0, local_size - 1);
+    
+    CALI_MARK_END("comp_large");
+    CALI_MARK_END("comp");
+
+    std::vector&lt;int&gt; all_sizes(world_size);
+    MPI_Allgather(&amp;local_size, 1, MPI_INT, all_sizes.data(), 1, MPI_INT, MPI_COMM_WORLD);
+
+    for (int step = 1; step &lt; world_size; step *= 2) {
+        if (world_rank % (2 * step) == 0) {
+            if (world_rank + step &lt; world_size) {
+                CALI_MARK_BEGIN("comm");
+                CALI_MARK_BEGIN("comm_large");
+                
+                int partner_size = all_sizes[world_rank + step];
+                std::vector&lt;int&gt; received_arr(partner_size);
+                
+                MPI_Status status;
+                MPI_Probe(world_rank + step, 0, MPI_COMM_WORLD, &amp;status);
+                
+                int actual_size;
+                MPI_Get_count(&amp;status, MPI_INT, &amp;actual_size);
+
+                received_arr.resize(actual_size);
+                
+                result = MPI_Recv(received_arr.data(), actual_size, MPI_INT, world_rank + step, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+
+                CALI_MARK_END("comm_large");
+                CALI_MARK_END("comm");
+
+                CALI_MARK_BEGIN("comp");
+                CALI_MARK_BEGIN("comp_large");
+                
+                std::vector&lt;int&gt; merged_arr(local_arr.size() + received_arr.size());
+                std::merge(local_arr.begin(), local_arr.end(), received_arr.begin(), received_arr.end(), merged_arr.begin());
+                local_arr = std::move(merged_arr);
+                
+                CALI_MARK_END("comp_large");
+                CALI_MARK_END("comp");
+            }
+        } else {
+            int target = world_rank - step;
+            if (target &gt;= 0) {
+                CALI_MARK_BEGIN("comm");
+                CALI_MARK_BEGIN("comm_large");
+                
+                result = MPI_Send(local_arr.data(), local_arr.size(), MPI_INT, target, 0, MPI_COMM_WORLD);
+                
+                CALI_MARK_END("comm_large");
+                CALI_MARK_END("comm");
+                break;
+            }
+        }
+    }
+
+    if (world_rank == 0) {
+        arr = std::move(local_arr);
+    }
+}
+
+bool correctness_check(const std::vector&lt;int&gt;&amp; arr) {
+    CALI_MARK_BEGIN("correctness_check");
+    bool is_sorted = std::is_sorted(arr.begin(), arr.end());
+    CALI_MARK_END("correctness_check");
+    return is_sorted;
+}
+
+int main(int argc, char** argv) {
+    CALI_MARK_BEGIN("main");
+
+    int provided;
+    MPI_Init_thread(&amp;argc, &amp;argv, MPI_THREAD_MULTIPLE, &amp;provided);
+
+    int world_rank, world_size;
+    MPI_Comm_rank(MPI_COMM_WORLD, &amp;world_rank);
+    MPI_Comm_size(MPI_COMM_WORLD, &amp;world_size);
+
+
+    if (argc != 3) {
+        if (world_rank == 0) {
+            std::cerr &lt;&lt; "Usage: " &lt;&lt; argv[0] &lt;&lt; " &lt;array_size&gt; &lt;input_type&gt;" &lt;&lt; std::endl;
+        }
+        MPI_Finalize();
+        return 1;
+    }
+
+    size_t input_size = std::atoi(argv[1]);
+    std::string input_type = argv[2];
+    
+    adiak::init(NULL);
+    adiak::launchdate();
+    adiak::libraries();
+    adiak::cmdline();
+    adiak::clustername();
+    adiak::value("algorithm", "merge");
+    adiak::value("programming_model", "mpi");
+    adiak::value("data_type", "int");
+    adiak::value("size_of_data_type", sizeof(int));
+    
+    adiak::value("input_size", input_size);
+    adiak::value("input_type", input_type);
+    adiak::value("num_procs", world_size);
+    adiak::value("scalability", "strong");
+    adiak::value("group_num", 17);
+    adiak::value("implementation_source", "handwritten");
+
+    std::vector&lt;int&gt; arr;
+    if (world_rank == 0) {
+        data_init_runtime(arr, input_size, input_type);
+    }
+
+    MPI_Barrier(MPI_COMM_WORLD);
+
+    parallelMergeSort(arr, world_rank, world_size);
+
+    if (world_rank == 0) {
+        bool is_sorted = correctness_check(arr);
+    }
+
+    MPI_Finalize();
+    CALI_MARK_END("main");
+
+    return 0;
+}
+</code></pre><ul>
+<li>Radix Sort:</li>
+</ul>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>#include &lt;mpi.h&gt;
+#include &lt;caliper/cali.h&gt;
+#include &lt;adiak.hpp&gt;
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+#include &lt;cmath&gt;
+
+#define MASTER 0
+
+// Radix Sort Function
+void radixSort(std::vector&lt;int&gt;&amp; arr) {
+    int max_element = *std::max_element(arr.begin(), arr.end());
+    for (int exp = 1; max_element / exp &gt; 0; exp *= 10) {
+        std::vector&lt;int&gt; output(arr.size());
+        int count[10] = {0};
+        
+        // Count occurrences
+        for (int i = 0; i &lt; arr.size(); i++)
+            count[(arr[i] / exp) % 10]++;
+        
+        // Cumulative count
+        for (int i = 1; i &lt; 10; i++)
+            count[i] += count[i - 1];
+        
+        // Build output array
+        for (int i = arr.size() - 1; i &gt;= 0; i--) {
+            output[count[(arr[i] / exp) % 10] - 1] = arr[i];
+            count[(arr[i] / exp) % 10]--;
+        }
+        
+        // Copy to original array
+        arr = output;
+    }
+}
+
+int main(int argc, char** argv) {
+    // Initialize MPI
+    MPI_Init(&amp;argc, &amp;argv);
+    
+    adiak::init((void*)MPI_COMM_WORLD);
+    adiak::launchdate();
+    adiak::libraries();
+    adiak::cmdline();
+    adiak::clustername();
+
+    // Variables to handle input size, process rank, and number of processors
+    int rank, size;
+    MPI_Comm_rank(MPI_COMM_WORLD, &amp;rank);
+    MPI_Comm_size(MPI_COMM_WORLD, &amp;size);
+    
+    // Check arguments for input size and type
+    if (argc &lt; 3) {
+        if (rank == MASTER) {
+            printf("Usage: %s &lt;input_size&gt; &lt;input_type&gt;\n", argv[0]);
+            printf("Input types: 0 - Sorted, 1 - Sorted with 1%% Not Sorted, 2 - Reverse Sorted, 3 - Random\n");
+        }
+        MPI_Finalize();
+        return 1;
+    }
+
+    // Setting input size and type
+    int input_size = std::stoi(argv[1]);
+    int input_type = std::stoi(argv[2]);
+    std::vector&lt;int&gt; arr(input_size);
+
+    // Generate different input types based on input_type argument
+    int num_unsorted = 0;
+
+    switch (input_type) {
+        case 0:
+            // Sorted
+            for (int i = 0; i &lt; input_size; i++) {
+                arr[i] = i;
+            }
+            break;
+        case 1:
+            // Sorted with 1% not sorted
+            for (int i = 0; i &lt; input_size; i++) {
+                arr[i] = i;
+            }
+            num_unsorted = input_size / 100;  // Assign after declaration
+            for (int i = 0; i &lt; num_unsorted; i++) {
+                int idx1 = rand() % input_size;
+                int idx2 = rand() % input_size;
+                std::swap(arr[idx1], arr[idx2]);
+            }
+            break;
+        case 2:
+            // Reverse sorted
+            for (int i = 0; i &lt; input_size; i++) {
+                arr[i] = input_size - i;
+            }
+            break;
+        case 3:
+            // Random
+            srand(42);  // Seed for reproducibility
+            for (int i = 0; i &lt; input_size; i++) {
+                arr[i] = rand() % input_size;
+            }
+            break;
+        default:
+            if (rank == MASTER) {
+                printf("Invalid input type specified.\n");
+            }
+            MPI_Finalize();
+            return 1;
+    }
+
+    
+    // Collect Adiak metadata for input size and type
+    adiak::value("input_size", input_size);
+    adiak::value("data_type", "int");
+    adiak::value("programming_model", "mpi");
+    adiak::value("algorithm", "radix_sort");
+    adiak::value("num_procs", size);
+    adiak::value("implementation_source", "handwritten");
+    adiak::value("input_type", input_type);
+    
+    // Caliper Region: Main
+    CALI_MARK_BEGIN("main");
+    
+    // Caliper Region: Data Initialization
+    CALI_MARK_BEGIN("data_init_runtime");
+    // Input data is already initialized in array "arr"
+    CALI_MARK_END("data_init_runtime");
+    
+    // Split data among processes (communication)
+    int local_size = input_size / size;
+    std::vector&lt;int&gt; local_arr(local_size);
+    CALI_MARK_BEGIN("comm");
+    CALI_MARK_BEGIN("comm_large");
+    MPI_Scatter(arr.data(), local_size, MPI_INT, local_arr.data(), local_size, MPI_INT, MASTER, MPI_COMM_WORLD);
+    CALI_MARK_END("comm_large");
+    CALI_MARK_END("comm");
+    
+    // Caliper Region: Computation - Radix Sort
+    double comp_start = MPI_Wtime();
+    CALI_MARK_BEGIN("comp");
+    CALI_MARK_BEGIN("comp_large");
+    radixSort(local_arr);
+    CALI_MARK_END("comp_large");
+    CALI_MARK_END("comp");
+    double comp_end = MPI_Wtime();
+    double comp_time = comp_end - comp_start;
+    
+    // Gather sorted sub-arrays back to the master process
+    CALI_MARK_BEGIN("comm");
+    CALI_MARK_BEGIN("comm_large");
+    MPI_Gather(local_arr.data(), local_size, MPI_INT, arr.data(), local_size, MPI_INT, MASTER, MPI_COMM_WORLD);
+    CALI_MARK_END("comm_large");
+    CALI_MARK_END("comm");
+    
+    // Caliper Region: Correctness Check
+    CALI_MARK_BEGIN("correctness_check");
+    if (rank == MASTER) {
+        bool sorted = std::is_sorted(arr.begin(), arr.end());
+        if (sorted) printf("Data is sorted correctly!\n");
+        else printf("Data sorting failed.\n");
+    }
+    CALI_MARK_END("correctness_check");
+    
+    // Measure Performance Metrics
+    double min_time, max_time, avg_time, total_time, variance;
+    double local_total_time = comp_time;
+    MPI_Reduce(&amp;local_total_time, &amp;min_time, 1, MPI_DOUBLE, MPI_MIN, MASTER, MPI_COMM_WORLD);
+    MPI_Reduce(&amp;local_total_time, &amp;max_time, 1, MPI_DOUBLE, MPI_MAX, MASTER, MPI_COMM_WORLD);
+    MPI_Reduce(&amp;local_total_time, &amp;total_time, 1, MPI_DOUBLE, MPI_SUM, MASTER, MPI_COMM_WORLD);
+    avg_time = total_time / size;
+    double local_diff = (local_total_time - avg_time) * (local_total_time - avg_time);
+    double sum_diff;
+    MPI_Reduce(&amp;local_diff, &amp;sum_diff, 1, MPI_DOUBLE, MPI_SUM, MASTER, MPI_COMM_WORLD);
+    variance = sum_diff / size;
+    
+    if (rank == MASTER) {
+        printf("Min time/rank: %f seconds\n", min_time);
+        printf("Max time/rank: %f seconds\n", max_time);
+        printf("Avg time/rank: %f seconds\n", avg_time);
+        printf("Total time: %f seconds\n", total_time);
+        printf("Variance time/rank: %f seconds^2\n", variance);
+    }
+    
+    // End Main Caliper Region
+    CALI_MARK_END("main");
+    
+    // Finalize MPI
+    MPI_Finalize();
+    return 0;
+}
+</code></pre><h3 id="see-the-builds-directory-to-find-the-correct-caliper-configurations-to-get-the-performance-metrics-they-will-show-up-in-the-thicketdataframe-when-the-caliper-file-is-read-into-thicket"><strong>See the <code>Builds/</code> directory to find the correct Caliper configurations to get the performance metrics.</strong> They will show up in the <code>Thicket.dataframe</code> when the Caliper file is read into Thicket. </h3>
+<h2 id="4-performance-evaluation">4. Performance evaluation </h2>
+<p>Include detailed analysis of computation performance, communication performance.<br>
+Include figures and explanation of your analysis.</p>
+<h3 id="4a-vary-the-following-parameters">4a. Vary the following parameters </h3>
+<p>For input_size's:</p>
+<ul>
+<li>2^16, 2^18, 2^20, 2^22, 2^24, 2^26, 2^28</li>
+</ul>
+<p>For input_type's:</p>
+<ul>
+<li>Sorted, Random, Reverse sorted, 1%perturbed</li>
+</ul>
+<p>MPI: num_procs:</p>
+<ul>
+<li>2, 4, 8, 16, 32, 64, 128, 256, 512, 1024</li>
+</ul>
+<p>This should result in 4x7x10=280 Caliper files for your MPI experiments.</p>
+<h3 id="4b-hints-for-performance-analysis">4b. Hints for performance analysis </h3>
+<p>To automate running a set of experiments, parameterize your program.</p>
+<ul>
+<li>input_type: "Sorted" could generate a sorted input to pass into your algorithms</li>
+<li>algorithm: You can have a switch statement that calls the different algorithms and sets the Adiak variables accordingly</li>
+<li>num_procs: How many MPI ranks you are using</li>
+</ul>
+<p>When your program works with these parameters, you can write a shell script<br>
+that will run a for loop over the parameters above (e.g., on 64 processors,<br>
+perform runs that invoke algorithm2 for Sorted, ReverseSorted, and Random data).</p>
+<h3 id="4c-you-should-measure-the-following-performance-metrics">4c. You should measure the following performance metrics </h3>
+<ul>
+<li><code>Time</code>
+<ul>
+<li>Min time/rank</li>
+<li>Max time/rank</li>
+<li>Avg time/rank</li>
+<li>Total time</li>
+<li>Variance time/rank</li>
+</ul>
+</li>
+</ul>
+<h1 id="sample-sort---performance-evaluation">Sample Sort - Performance Evaluation </h1>
+<h2 id="data-set-size-268435456">Data Set Size: 268,435,456 </h2>
+<div style="display: flex;">
+  <img src="samplesort\samplesort_performance_eval_graphs\performance_metrics_268435456_comp.png" alt="Performance Metrics 268435456 - comp" style="width: 45%; margin-right: 10px;">
+  <img src="samplesort\samplesort_performance_eval_graphs\performance_metrics_268435456_comm.png" alt="Performance Metrics 268435456 - comm" style="width: 45%;">
+</div>
+<h2 id="data-set-size-4194304">Data Set Size: 4,194,304 </h2>
+<div style="display: flex;">
+  <img src="samplesort\samplesort_performance_eval_graphs\performance_metrics_4194304_comp.png" alt="Performance Metrics 4194304 - comp" style="width: 45%; margin-right: 10px;">
+  <img src="samplesort\samplesort_performance_eval_graphs\performance_metrics_4194304_comm.png" alt="Performance Metrics 4194304 - comm" style="width: 45%;">
+</div>
+<h2 id="data-set-size-65536">Data Set Size: 65,536 </h2>
+<div style="display: flex;">
+  <img src="samplesort\samplesort_performance_eval_graphs\performance_metrics_65536_comp.png" alt="Performance Metrics 65536 - comp" style="width: 45%; margin-right: 10px;">
+  <img src="samplesort\samplesort_performance_eval_graphs\performance_metrics_65536_comm.png" alt="Performance Metrics 65536 - comm" style="width: 45%;">
+</div>
+<p><code>Above we can see the computation and communication performance for input sizes of 2^16, 2^22, and 2^28 (you can view all the graphs generated in the samplesortgraphs folder). One trend we can analyze amongst all of these is that as we increase the input size, we see an increase in the total time over both computation and communication. We also see an overall decline in the average communication and computation time as we increase the number of processes. It is important to note that on the smallest input size, 2^16, it seems that there is a point when increasing the number of processors does drop the total time significantly, but then it keeps increasing. It can also be seen that as the input size increases, the randomly generated input (as seen on the communication side) takes more time on average comapred to either sorted, reverse sorted, or sorted 1% perturbed. Because we are observing the the min, max, average time per rank, we can see that as the number of processes increases, on average the time for computation per each one is definitely decreasing. The reason we see an increase in the total time is because we are looking at the total time as an overall unit compared to per each rank as I said before. So instead if we observe the average time per rank for both communication and computation we can see that as more processors are introduced, more overhead is introduced in terms of communication, which explains the increase in average time/rank for that, but in terms of computation, the average time per processor is definitely decreasing.</code></p>
+<h1 id="merge-sort---performance-evaluation">Merge Sort - Performance Evaluation </h1>
+<h2 id="data-set-size-268435456-1">Data Set Size: 268,435,456 </h2>
+<div style="display: flex;">
+  <img src="merge_sort\mergesort_performance_eval_graphs\comp_large_268435456_performance.png" alt="Performance Metrics 268435456 - comp_large" style="width: 45%; margin-right: 10px;">
+  <img src="merge_sort\mergesort_performance_eval_graphs\comm_268435456_performance.png" alt="Performance Metrics 268435456 - comm" style="width: 45%;">
+</div>
+<h2 id="data-set-size-4194304-1">Data Set Size: 4,194,304 </h2>
+<div style="display: flex;">
+  <img src="merge_sort\mergesort_performance_eval_graphs\comp_large_4194304_performance.png" alt="Performance Metrics 4194304 - comp_large" style="width: 45%; margin-right: 10px;">
+  <img src="merge_sort\mergesort_performance_eval_graphs\comm_4194304_performance.png" alt="Performance Metrics 4194304 - comm" style="width: 45%;">
+</div>
+<h2 id="data-set-size-65536-1">Data Set Size: 65,536 </h2>
+<div style="display: flex;">
+  <img src="merge_sort\mergesort_performance_eval_graphs\comp_large_65536_performance.png" alt="Performance Metrics 65536 - comp_large" style="width: 45%; margin-right: 10px;">
+  <img src="merge_sort\mergesort_performance_eval_graphs\comm_65536_performance.png" alt="Performance Metrics 65536 - comm" style="width: 45%;">
+</div>
+<p><code>The plots that are displayed above show different computational and communication performance metrics for input sizes of 2^16, 2^22, and 2^28. To begin by explaining the graphs, there are 5 plots covering the Min time/rank, Max time/rank, Avg time/rank, Total time, and Variance time/rank. In addition to this, for each of these metrics, it was tested on 4 different types of input. These include random, sorted, reverse sorted and sorted with 1% perturbed. Now to dig into the trends and analysis of these different graphs. For the first graph which is of size 2^28, for communication, it can be seen that as the number of processes increases there is a steady increase in the total time as well. This repeats for each of the 5 metrics in communication. In contrast, for the computation side, it can be seen that as the number of processes increases, the time also increases. It is important to note that geenrally it appears that random input tends to take more time in general. For the comp region it can be seen that avg time/rank deceases rapidly at first but then it stabilizes.</code></p>
+<h1 id="radix-sort---performance-evaluation">Radix Sort - Performance Evaluation </h1>
+<h2 id="data-set-size-268435456-2">Data Set Size: 268,435,456 </h2>
+<div style="display: flex;">
+  <img src="radix_sort\radixsort_performance_eval_graphs\performance_metrics_268435456_comp_large.png" alt="Performance Metrics 268435456 - comp_large" style="width: 45%; margin-right: 10px;">
+  <img src="radix_sort\radixsort_performance_eval_graphs\performance_metrics_268435456_comm.png" alt="Performance Metrics 268435456 - comm" style="width: 45%;">
+</div>
+<h2 id="data-set-size-4194304-2">Data Set Size: 4,194,304 </h2>
+<div style="display: flex;">
+  <img src="radix_sort\radixsort_performance_eval_graphs\performance_metrics_4194304_comp_large.png" alt="Performance Metrics 4194304 - comp_large" style="width: 45%; margin-right: 10px;">
+  <img src="radix_sort\radixsort_performance_eval_graphs\performance_metrics_4194304_comm.png" alt="Performance Metrics 4194304 - comm" style="width: 45%;">
+</div>
+<h2 id="data-set-size-65536-2">Data Set Size: 65,536 </h2>
+<div style="display: flex;">
+  <img src="radix_sort\radixsort_performance_eval_graphs\performance_metrics_65536_comp_large.png" alt="Performance Metrics 65536 - comp_large" style="width: 45%; margin-right: 10px;">
+  <img src="radix_sort\radixsort_performance_eval_graphs\performance_metrics_65536_comm.png" alt="Performance Metrics 65536 - comm" style="width: 45%;">
+</div>
+<p><code>The generated plots provide insights into the performance metrics of different computational tasks across input sizes of 2^16, 2^22, and 2^28 and various input types (you can view all the graphs generated in the radixsort_performance_eval_graphs folder). For each input size, we observe how different input types (Random, Sorted, Reverse Sorted, and Sorted with 1% perturbed) affect key metrics such as Min time/rank, Max time/rank, Avg time/rank, Total time, and Variance time/rank. In general, as the number of processes increases, the average time per rank decreases, this shows a strong scalability for larger workloads. The total execution time also shows a reduction with increasing numbers of processes, this shows that parallelization is effective. But there are variations between input types. For example, the Sorted input tends to perform better in terms of consistency, as indicated by lower variance, while the Random and Reverse Sorted inputs often show higher fluctuations in time metrics. The plots also highlight the diminishing returns in performance gains beyond a certain number of processes, especially for smaller input sizes.</code></p>
+<h1 id="bitonic-sort---performance-evaluation">Bitonic Sort - Performance Evaluation </h1>
+<h2 id="data-set-size-268435456-3">Data Set Size: 268,435,456 </h2>
+<div style="display: flex;">
+  <img src="BitonicSort\performance\performance_metrics_268435456_comp.png" alt="Performance Metrics 268435456 - comp_large" style="width: 45%; margin-right: 10px;">
+  <img src="BitonicSort\performance\performance_metrics_268435456_comm.png" alt="Performance Metrics 268435456 - comm" style="width: 45%;">
+</div>
+<h2 id="data-set-size-4194304-3">Data Set Size: 4,194,304 </h2>
+<div style="display: flex;">
+  <img src="BitonicSort\performance\performance_metrics_4194304_comp.png" alt="Performance Metrics 4194304 - comp_large" style="width: 45%; margin-right: 10px;">
+  <img src="BitonicSort\performance\performance_metrics_4194304_comm.png" alt="Performance Metrics 4194304 - comm" style="width: 45%;">
+</div>
+<h2 id="data-set-size-65536-3">Data Set Size: 65,536 </h2>
+<div style="display: flex;">
+  <img src="BitonicSort\performance\performance_metrics_65536_comp.png" alt="Performance Metrics 65536 - comp_large" style="width: 45%; margin-right: 10px;">
+  <img src="BitonicSort\performance\performance_metrics_65536_comm.png" alt="Performance Metrics 65536 - comm" style="width: 45%;">
+</div>
+<p><code>I couldn't produce all the .cali files because the Grace cluster was not accepting jobs and the tasks remained stuck in the queue. When I initially ran the jobs before Grace became busy, the 1% permuted version overwrote other input types such as random, reverse, and sorted. I plan to finish generating the .cali files and complete the graphs once the situation with Grace improves. The plots displayed above show various computational and communication performance metrics for input sizes of 2^16, 2^22, and 2^28. There are 5 plots representing the Min time/rank, Max time/rank, Avg time/rank, Total time, and Variance time/rank. Each of these metrics was tested across four different types of input: random, sorted, reverse sorted, and sorted with 1% perturbation (it was tested but no califile was captured). Now, looking at the trends in these graphs, there is a consistent pattern: as the number of processes increases, the total time also steadily increases. On the computation side, the time taken also rises as the number of processes increases.</code></p>
+<h2 id="5-presentation">5. Presentation </h2>
+<p>Plots for the presentation should be as follows:</p>
+<ul>
+<li>For each implementation:
+<ul>
+<li>For each of comp_large, comm, and main:
+<ul>
+<li>Strong scaling plots for each input_size with lines for input_type (7 plots - 4 lines each)</li>
+<li>Strong scaling speedup plot for each input_type (4 plots)</li>
+<li>Weak scaling plots for each input_type (4 plots)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Analyze these plots and choose a subset to present and explain in your presentation.</p>
+<h2 id="6-final-report">6. Final Report </h2>
+<p>Submit a zip named <code>TeamX.zip</code> where <code>X</code> is your team number. The zip should contain the following files:</p>
+<ul>
+<li>Algorithms: Directory of source code of your algorithms.</li>
+<li>Data: All <code>.cali</code> files used to generate the plots seperated by algorithm/implementation.</li>
+<li>Jupyter notebook: The Jupyter notebook(s) used to generate the plots for the report.</li>
+<li><a href="http://Report.md">Report.md</a></li>
+</ul>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
