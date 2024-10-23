@@ -242,7 +242,22 @@ They will show up in the `Thicket.metadata` if the caliper file is read into Thi
 
 - Bitonic Sort:
 ```
-
+0.001 MPI_Comm_dup
+0.000 MPI_Finalize
+0.000 MPI_Finalized
+0.000 MPI_Initialized
+2.003 main
+├─ 0.002 MPI_Barrier
+├─ 0.021 MPI_Reduce
+├─ 0.025 comm
+│  └─ 0.025 comm_large
+│     ├─ 0.006 MPI_Gather
+│     └─ 0.024 MPI_Scatter
+├─ 1.942 comp
+│  └─ 1.942 comp_large
+│     └─ 0.018 MPI_Sendrecv
+├─ 0.015 correctness_check
+└─ 0.018 data_init_runtime
 ```
 - Sample Sort:
 ```
