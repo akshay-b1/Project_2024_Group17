@@ -306,6 +306,20 @@ They will show up in the `Thicket.metadata` if the caliper file is read into Thi
 ```
 - Radix Sort:
 ```
+0.008 MPI_Comm_dup
+0.000 MPI_Finalize
+0.000 MPI_Finalized
+0.000 MPI_Initialized
+0.143 main
+├─ 0.008 MPI_Reduce
+├─ 0.143 comm
+│  └─ 0.143 comm_large
+│     ├─ 0.007 MPI_Gather
+│     └─ 0.138 MPI_Scatter
+├─ 0.000 comp
+│  └─ 0.000 comp_large
+├─ 0.000 correctness_check
+└─ 0.000 data_init_runtime
 
 ```
 
