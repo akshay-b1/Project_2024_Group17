@@ -283,7 +283,26 @@ They will show up in the `Thicket.metadata` if the caliper file is read into Thi
 ```
 - Merge Sort:
 ```
-
+13.527 main
+├─ 0.054 MPI_Allgather
+├─ 0.186 MPI_Barrier
+├─ 0.034 MPI_Bcast
+├─ 0.180 MPI_Comm_dup
+├─ 0.000 MPI_Finalize
+├─ 0.000 MPI_Finalized
+├─ 0.000 MPI_Init_thread
+├─ 0.000 MPI_Initialized
+├─ 0.033 comm
+│  └─ 0.033 comm_large
+│     ├─ 0.000 MPI_Get_count
+│     ├─ 0.013 MPI_Probe
+│     ├─ 0.000 MPI_Recv
+│     ├─ 0.026 MPI_Scatterv
+│     └─ 0.000 MPI_Send
+├─ 0.000 comp
+│  └─ 0.000 comp_large
+├─ 0.001 correctness_check
+└─ 0.001 data_init_runtime
 ```
 - Radix Sort:
 ```
