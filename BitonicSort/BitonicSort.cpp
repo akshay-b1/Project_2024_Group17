@@ -1,4 +1,4 @@
-#include <mpi.h>
+ #include <mpi.h>
 #include <vector>
 #include <algorithm>
 #include <iostream>
@@ -40,37 +40,57 @@ void bitonicSort(std::vector<int>& arr, int low, int cnt, bool dir) {
 // Parallel bitonic sort with MPI
 void parallelBitonicSort(std::vector<int>& local_arr, int world_rank, int world_size) {
     int local_size = local_arr.size();
-
-    for (int step = 2; step <= world_size * local_size; step *= 2) {
-    for (int substep = step / 2; substep > 0; substep /= 2) {
-        for (int i = 0; i < local_size; i++) {
-            int j = i ^ substep;
-            int proc = j / local_size;
-
-            if (proc == world_rank) {
-                // Bitonic compare within the process
-                bitonicCompare(local_arr, i % local_size, j % local_size, (i / step) % 2 == 0);
-            } else {
-                // Communication between processes
-                int partner_rank = world_rank ^ (substep / local_size);
-                int send_val = local_arr[i];
-                int recv_val;
-
-                MPI_Sendrecv(&send_val, 1, MPI_INT, partner_rank, 0,
-                             &recv_val, 1, MPI_INT, partner_rank, 0,
-                             MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-
-                // Perform the comparison based on the step's direction
-                if ((i / step) % 2 == 0) {
-                    local_arr[i] = std::min(send_val, recv_val);
+    
+    // First, sort local arrays
+    bitonicSort(local_arr, 0, local_size, true);
+    
+    // Then perform parallel merging stages
+    for (int step = world_size/2; step > 0; step /= 2) {
+        // Calculate if this process should sort ascending or descending
+        int group = world_rank / (2 * step);
+        bool ascending = (group % 2 == 0);
+        
+        // Find partner process
+        int partner = world_rank ^ step;
+        
+        // Exchange data with partner
+        std::vector<int> partner_arr(local_size);
+        MPI_Sendrecv(local_arr.data(), local_size, MPI_INT, 
+                     partner, 0,
+                     partner_arr.data(), local_size, MPI_INT, 
+                     partner, 0,
+                     MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+        
+        // Merge the arrays
+        std::vector<int> merged(local_size * 2);
+        if (world_rank < partner) {
+            // If I'm the lower rank, I should keep the min/max values based on ascending
+            for (int i = 0; i < local_size; i++) {
+                if (ascending) {
+                    merged[i] = std::min(local_arr[i], partner_arr[i]);
+                    merged[i + local_size] = std::max(local_arr[i], partner_arr[i]);
                 } else {
-                    local_arr[i] = std::max(send_val, recv_val);
+                    merged[i] = std::max(local_arr[i], partner_arr[i]);
+                    merged[i + local_size] = std::min(local_arr[i], partner_arr[i]);
                 }
             }
+            // Keep the first half
+            std::copy(merged.begin(), merged.begin() + local_size, local_arr.begin());
+        } else {
+            // If I'm the higher rank, I should keep the opposite values
+            for (int i = 0; i < local_size; i++) {
+                if (ascending) {
+                    merged[i] = std::min(local_arr[i], partner_arr[i]);
+                    merged[i + local_size] = std::max(local_arr[i], partner_arr[i]);
+                } else {
+                    merged[i] = std::max(local_arr[i], partner_arr[i]);
+                    merged[i + local_size] = std::min(local_arr[i], partner_arr[i]);
+                }
+            }
+            // Keep the second half
+            std::copy(merged.begin() + local_size, merged.end(), local_arr.begin());
         }
     }
-}
-
 }
 
 
@@ -93,6 +113,21 @@ void data_init_runtime(std::vector<int>& arr, int input_size, int input_type) {
             srand(42);
             for (int i = 0; i < input_size; i++) {
                 arr[i] = rand() % input_size;
+            }
+            break;
+        case 3: // 1% perturbed (mostly sorted with 1% random swaps)
+            // Initialize sorted array
+            for (int i = 0; i < input_size; i++) {
+                arr[i] = i;
+            }
+            // Calculate 1% of the array size
+            num_unsorted = input_size / 100;
+
+            srand(static_cast<unsigned>(time(0))); // Seed for random swaps
+            for (int i = 0; i < num_unsorted; i++) {
+                int idx1 = rand() % input_size;
+                int idx2 = rand() % input_size;
+                std::swap(arr[idx1], arr[idx2]); // Randomly swap two elements
             }
             break;
     }
@@ -174,9 +209,6 @@ int main(int argc, char** argv) {
         CALI_MARK_BEGIN("correctness_check");
         bool is_sorted = correctness_check(arr);
         CALI_MARK_END("correctness_check");
-        for(int i = 0; i < arr.size(); i++){
-            std::cout << std::to_string(arr[i]);
-        }
         std::cout << std::endl;
         if (is_sorted) {
             std::cout << "Array is correctly sorted." << std::endl;
